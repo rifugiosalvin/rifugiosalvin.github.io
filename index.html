@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Rifugio Salvin a Monastero di Lanzo: esperienze nella natura, sentieri, lago di Monastero, Uja di Bellavarda, ristorante, camere, baita e attività con i ragazzi.">
 
+    <!-- Libreria per animazioni di scroll (solo grafica) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
     <style>
         :root {
             --blu-scuro: #123e6b;
@@ -24,6 +27,7 @@
             background: var(--sfondo);
             color: var(--testo);
             line-height: 1.5;
+            scroll-behavior: smooth;
         }
 
         /* HERO ------------------------------------------------------ */
@@ -158,14 +162,6 @@
             padding: 24px;
             border-radius: 12px;
             box-shadow: 0 14px 30px rgba(0,0,0,0.06);
-            opacity: 0;
-            transform: translateY(18px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        section.visibile {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         section h3 {
@@ -214,6 +210,36 @@
             font-size: 0.95rem;
             background: #f1f7f3;
             border-radius: 4px;
+        }
+
+        /* STATISTICHE ------------------------------------------------ */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: #0f2845;
+            color: #f5f7ff;
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .stat-numero {
+            font-size: 1.6rem;
+            font-weight: 600;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 0.8;
         }
 
         /* TIMELINE GIORNATE ---------------------------------------- */
@@ -449,7 +475,119 @@
             margin-bottom: 3px;
         }
 
-        /* INFO & FOOTER -------------------------------------------- */
+        /* GALLERIA -------------------------------------------------- */
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 12px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            min-height: 140px;
+            text-align: left;
+        }
+
+        .gallery-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.7);
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+        }
+
+        .gallery-label {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            color: #fff;
+            font-size: 0.9rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .gallery-item:hover .gallery-bg {
+            transform: scale(1.05);
+            filter: brightness(0.85);
+        }
+
+        /* LIGHTBOX -------------------------------------------------- */
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+
+        .lightbox.attiva {
+            display: flex;
+        }
+
+        .lightbox-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 900px;
+            width: 90%;
+            background: #050b14;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+        }
+
+        .lightbox-image {
+            width: 100%;
+            padding-top: 55%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .lightbox-caption {
+            margin: 0;
+            padding: 10px 14px 12px;
+            font-size: 0.9rem;
+            color: #e5ecff;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            border: none;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            font-size: 1.2rem;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(0,0,0,0.7);
+        }
+
+        /* FOOTER ---------------------------------------------------- */
 
         footer {
             border-top: 1px solid #dcdce3;
@@ -487,7 +625,7 @@
 </head>
 <body>
 
-<header>
+<header data-aos="fade-down">
     <div class="contenuto-hero">
         <div class="badge-hero">
             <span>⛰️</span>
@@ -514,17 +652,18 @@
         <a href="#rifugio">Il rifugio</a>
         <a href="#paesaggi">Paesaggi e natura</a>
         <a href="#sentiero">Il sentiero</a>
-        <a href="#esperienza">La nostra esperienza</a>
-        <a href="#attivita">Attività con i ragazzi</a>
+        <a href="#esperienza">Esperienza ragazzi</a>
+        <a href="#attivita">Attività</a>
         <a href="#ristorante">Ristorante</a>
-        <a href="#alloggi">Alloggi e baita</a>
+        <a href="#alloggi">Alloggi</a>
+        <a href="#galleria">Galleria</a>
         <a href="#notelegali">Note legali</a>
     </div>
 </nav>
 
 <main>
     <!-- IL RIFUGIO -->
-    <section id="rifugio">
+    <section id="rifugio" data-aos="fade-up">
         <div class="pill">Il luogo</div>
         <h3>Il Rifugio Salvin – Una meraviglia naturale</h3>
         <div class="grid-2">
@@ -551,14 +690,30 @@
                 </p>
             </div>
         </div>
-        <div class="evidenza">
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-numero" data-target="1580">0</span>
+                <span class="stat-label">metri di quota</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-numero" data-target="60">0</span>
+                <span class="stat-label">coperti ristorante</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-numero" data-target="8">0</span>
+                <span class="stat-label">camere ristrutturate</span>
+            </div>
+        </div>
+
+        <div class="evidenza" style="margin-top:16px;">
             Un rifugio raggiungibile solo a piedi: arrivare al Salvin significa già iniziare l’esperienza,
             passo dopo passo, lungo il sentiero.
         </div>
     </section>
 
     <!-- PAESAGGI E NATURA: MARSAGLIA, LAGO, UJA + ALBERI -->
-    <section id="paesaggi">
+    <section id="paesaggi" data-aos="fade-up">
         <div class="pill">Paesaggi naturali</div>
         <h3>Marsaglia, lago di Monastero, Uja di Bellavarda</h3>
         <p>
@@ -698,7 +853,7 @@
     </section>
 
     <!-- IL SENTIERO -->
-    <section id="sentiero">
+    <section id="sentiero" data-aos="fade-up">
         <div class="pill">Il nostro percorso</div>
         <h3>Il sentiero per il Rifugio Salvin</h3>
         <p>
@@ -740,8 +895,8 @@
     </section>
 
     <!-- ESPERIENZA DEI RAGAZZI -->
-    <section id="esperienza">
-        <div class="pill">La nostra esperienza</div>
+    <section id="esperienza" data-aos="fade-up">
+        <div class="pill">Esperienza ragazzi</div>
         <h3>Due giornate al Rifugio Salvin</h3>
         <p>
             Di seguito il racconto dell’esperienza vissuta dai ragazzi: dalla camminata di avvicinamento
@@ -785,8 +940,8 @@
     </section>
 
     <!-- ATTIVITÀ CON GLI ANIMALI E I PRODOTTI -->
-    <section id="attivita">
-        <div class="pill">Attività con i ragazzi</div>
+    <section id="attivita" data-aos="fade-up">
+        <div class="pill">Attività</div>
         <h3>Capre, formaggio e pane: imparare dalla vita quotidiana</h3>
         <p>
             Durante il soggiorno i ragazzi hanno potuto affiancare i gestori del rifugio in alcune attività
@@ -829,7 +984,7 @@
     </section>
 
     <!-- RISTORANTE -->
-    <section id="ristorante">
+    <section id="ristorante" data-aos="fade-up">
         <div class="pill">Sapori</div>
         <h3>Ristorante – Spese dai sapori al riposo</h3>
         <div class="grid-2">
@@ -943,7 +1098,7 @@
     </section>
 
     <!-- ALLOGGI E BAITA -->
-    <section id="alloggi">
+    <section id="alloggi" data-aos="fade-up">
         <div class="pill">Riposo</div>
         <h3>Alloggi al rifugio e Baita Allen</h3>
 
@@ -997,8 +1152,50 @@
         </div>
     </section>
 
+    <!-- GALLERIA FOTOGRAFICA -->
+    <section id="galleria" data-aos="fade-up">
+        <div class="pill">Galleria</div>
+        <h3>Scorci dal Rifugio Salvin</h3>
+        <p>
+            Alcuni scorci rappresentativi del rifugio e dei suoi dintorni. In futuro puoi sostituire queste immagini
+            con foto reali del Salvin, del lago e dei sentieri.
+        </p>
+
+        <div class="gallery-grid">
+            <button class="gallery-item"
+                    data-img="https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg"
+                    data-caption="Vista serale dalle vicinanze del rifugio, tra luci di valle e profilo delle montagne.">
+                <div class="gallery-bg"
+                     style="background-image:url('https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg');">
+                </div>
+                <div class="gallery-overlay"></div>
+                <div class="gallery-label">Luci dei paesi sotto il rifugio</div>
+            </button>
+
+            <button class="gallery-item"
+                    data-img="https://images.pexels.com/photos/547115/pexels-photo-547115.jpeg"
+                    data-caption="L’atmosfera del bosco lungo il sentiero che conduce al rifugio.">
+                <div class="gallery-bg"
+                     style="background-image:url('https://images.pexels.com/photos/547115/pexels-photo-547115.jpeg');">
+                </div>
+                <div class="gallery-overlay"></div>
+                <div class="gallery-label">Bosco sul sentiero</div>
+            </button>
+
+            <button class="gallery-item"
+                    data-img="https://images.pexels.com/photos/2387418/pexels-photo-2387418.jpeg"
+                    data-caption="Alba tra i monti, colori che sembrano dipinti in cielo.">
+                <div class="gallery-bg"
+                     style="background-image:url('https://images.pexels.com/photos/2387418/pexels-photo-2387418.jpeg');">
+                </div>
+                <div class="gallery-overlay"></div>
+                <div class="gallery-label">Alba tra le montagne</div>
+            </button>
+        </div>
+    </section>
+
     <!-- NOTE LEGALI -->
-    <section id="notelegali">
+    <section id="notelegali" data-aos="fade-up">
         <div class="pill">Trasparenza</div>
         <h3>Note legali e privacy</h3>
         <p style="font-size:0.93rem;">
@@ -1025,23 +1222,17 @@
     </div>
 </footer>
 
+<!-- Libreria AOS e JavaScript personalizzato -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     // anno automatico nel footer
     document.getElementById('anno').textContent = new Date().getFullYear();
 
-    // animazione sezioni in ingresso
-    const sezioni = document.querySelectorAll('main section');
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('visibile');
-                }
-            });
-        },
-        { threshold: 0.15 }
-    );
-    sezioni.forEach(sec => observer.observe(sec));
+    // inizializza animazioni AOS
+    AOS.init({
+        duration: 800,
+        once: true
+    });
 
     // tabs paesaggi
     const tabButtons = document.querySelectorAll('.tab-btn');
@@ -1068,6 +1259,74 @@
     alberi.forEach(card => {
         card.addEventListener('click', () => {
             card.classList.toggle('aperto');
+        });
+    });
+
+    // contatori numerici (quota, coperti, camere)
+    const stats = document.querySelectorAll('.stat-numero');
+    const statsObserver = new IntersectionObserver(
+        (entries, obs) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const el = e.target;
+                    const target = parseInt(el.getAttribute('data-target'), 10);
+                    let current = 0;
+                    const step = Math.max(1, Math.floor(target / 80));
+
+                    const interval = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(interval);
+                        }
+                        el.textContent = current;
+                    }, 20);
+
+                    obs.unobserve(el);
+                }
+            });
+        },
+        { threshold: 0.6 }
+    );
+    stats.forEach(s => statsObserver.observe(s));
+
+    // galleria / lightbox
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    lightbox.innerHTML = `
+        <div class="lightbox-backdrop"></div>
+        <div class="lightbox-content">
+            <button class="lightbox-close" aria-label="Chiudi">×</button>
+            <div class="lightbox-image"></div>
+            <p class="lightbox-caption"></p>
+        </div>
+    `;
+    document.body.appendChild(lightbox);
+
+    const lbImage = lightbox.querySelector('.lightbox-image');
+    const lbCaption = lightbox.querySelector('.lightbox-caption');
+    const lbClose = lightbox.querySelector('.lightbox-close');
+    const lbBackdrop = lightbox.querySelector('.lightbox-backdrop');
+
+    function chiudiLightbox() {
+        lightbox.classList.remove('attiva');
+    }
+
+    lbClose.addEventListener('click', chiudiLightbox);
+    lbBackdrop.addEventListener('click', chiudiLightbox);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') chiudiLightbox();
+    });
+
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const img = item.getAttribute('data-img');
+            const caption = item.getAttribute('data-caption') || '';
+            lbImage.style.backgroundImage = `url('${img}')`;
+            lbCaption.textContent = caption;
+            lightbox.classList.add('attiva');
         });
     });
 </script>

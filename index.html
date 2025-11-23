@@ -1,1 +1,319 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Rifugio Salvin – Monastero di Lanzo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Rifugio Salvin a Monastero di Lanzo: natura, sentieri, percorsi didattici e attività con i ragazzi. Informazioni su escursioni, ambiente e territorio.">
+    <style>
+        :root {
+            --blu-scuro: #123e6b;
+            --blu-chiaro: #1f6fa5;
+            --verde: #3c7c4c;
+            --sfondo: #f4f4f6;
+            --testo: #222;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--sfondo);
+            color: var(--testo);
+            line-height: 1.5;
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                        url("https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg") center/cover no-repeat;
+            color: white;
+            padding: 60px 20px 80px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+            font-size: 2.2rem;
+            letter-spacing: 0.04em;
+        }
+
+        header h2 {
+            margin: 0 0 14px;
+            font-weight: 400;
+            font-size: 1.05rem;
+        }
+
+        header p {
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+            font-size: 0.98rem;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: white;
+            border-bottom: 1px solid #dcdce3;
+        }
+
+        nav .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 6px 8px;
+            gap: 4px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--blu-scuro);
+            font-size: 0.9rem;
+            padding: 8px 12px;
+            border-radius: 999px;
+        }
+
+        nav a:hover {
+            background: var(--blu-scuro);
+            color: white;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 16px 40px;
+        }
+
+        section {
+            background: white;
+            margin-top: 24px;
+            padding: 22px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+        }
+
+        section h3 {
+            margin-top: 0;
+            color: var(--blu-scuro);
+            font-size: 1.25rem;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: #e2eef8;
+            color: var(--blu-scuro);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 20px;
+        }
+
+        .box {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 14px;
+            border: 1px solid #e0e0e5;
+            font-size: 0.95rem;
+        }
+
+        .sentieri-list li {
+            margin-bottom: 6px;
+        }
+
+        footer {
+            border-top: 1px solid #dcdce3;
+            padding: 16px 16px 26px;
+            font-size: 0.8rem;
+            color: #666;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        footer a {
+            color: var(--blu-scuro);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 720px) {
+            header {
+                padding: 40px 16px 50px;
+            }
+            header h1 {
+                font-size: 1.7rem;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            section {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Rifugio Salvin</h1>
+    <h2>Monastero di Lanzo – Valle di Lanzo (TO)</h2>
+    <p>
+        Un luogo di natura, silenzio e cammino: sentieri, boschi e panorami che diventano esperienza
+        formativa per ragazzi, famiglie e scuole.
+    </p>
+</header>
+
+<nav>
+    <div class="nav-inner">
+        <a href="#rifugio">Il rifugio</a>
+        <a href="#sentieri">Sentieri e percorsi</a>
+        <a href="#esperienze">Esperienze con i ragazzi</a>
+        <a href="#natura">Natura e territorio</a>
+        <a href="#info">Informazioni pratiche</a>
+        <a href="#notelegali">Note legali</a>
+    </div>
+</nav>
+
+<main>
+    <section id="rifugio">
+        <div class="pill">Accoglienza</div>
+        <h3>Il Rifugio Salvin</h3>
+        <div class="grid-2">
+            <div>
+                <p>
+                    Il <strong>Rifugio Salvin</strong> è una struttura immersa nei boschi sopra Monastero di Lanzo,
+                    raggiungibile solo a piedi lungo i sentieri della valle. È un luogo semplice, autentico,
+                    pensato per chi desidera vivere la montagna con tempi lenti, rispetto e attenzione all’ambiente.
+                </p>
+                <p>
+                    Gli spazi interni ed esterni si prestano particolarmente ad attività con gruppi di ragazzi:
+                    momenti di condivisione, laboratori, osservazione del territorio, educazione alla sostenibilità
+                    e alla vita in natura.
+                </p>
+            </div>
+            <div class="box">
+                <strong>Caratteristiche principali</strong>
+                <ul>
+                    <li>Struttura raggiungibile solo a piedi</li>
+                    <li>Ambiente familiare e non turistico di massa</li>
+                    <li>Spazi adatti a gruppi scolastici e associazioni</li>
+                    <li>Contesto ideale per attività di educazione ambientale</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="sentieri">
+        <div class="pill">Percorsi</div>
+        <h3>Sentieri e percorsi per arrivare al rifugio</h3>
+        <p>
+            Il Rifugio Salvin è il punto di arrivo di diversi sentieri che si sviluppano nei boschi sopra
+            Monastero di Lanzo. I tempi di percorrenza e le difficoltà possono essere adattati alle esigenze
+            del gruppo, in particolare quando si lavora con classi delle scuole secondarie.
+        </p>
+        <ul class="sentieri-list">
+            <li><strong>Percorso da [Monastero di Lanzo]</strong> – itinerario classico di accesso al rifugio, con tratti nel bosco e scorci panoramici sulla valle.</li>
+            <li><strong>Anelli nei dintorni del rifugio</strong> – brevi sentieri adatti ad attività di osservazione, giochi di orienteering e laboratori all’aperto.</li>
+            <li><strong>Varianti escursionistiche</strong> – possibilità di percorsi più impegnativi per gruppi abituati al cammino in montagna.</li>
+        </ul>
+        <p style="font-size:0.9rem;">
+            I dettagli dei percorsi (dislivello, tempi, equipaggiamento consigliato) vengono concordati in fase di
+            organizzazione con gli insegnanti o i referenti dei gruppi.
+        </p>
+    </section>
+
+    <section id="esperienze">
+        <div class="pill">Didattica</div>
+        <h3>Esperienze dei ragazzi e attività educative</h3>
+        <p>
+            Il soggiorno al Rifugio Salvin diventa per i ragazzi un’occasione per sperimentare la montagna
+            in modo concreto: non solo come “gita”, ma come esperienza di responsabilità, collaborazione e
+            contatto diretto con l’ambiente.
+        </p>
+        <p>
+            Con le classi (ad esempio indirizzi turistici o professionali) è possibile progettare attività che
+            uniscono l’aspetto escursionistico a quello formativo:
+        </p>
+        <ul>
+            <li>lettura del paesaggio e dei segni del territorio;</li>
+            <li>osservazione dei flussi turistici in montagna e delle strutture ricettive;</li>
+            <li>laboratori su accoglienza, gestione del gruppo e sicurezza sui sentieri;</li>
+            <li>momenti di restituzione (diario di bordo, mappe concettuali, materiali digitali).</li>
+        </ul>
+    </section>
+
+    <section id="natura">
+        <div class="pill">Ambiente</div>
+        <h3>Natura, fauna e paesaggio</h3>
+        <p>
+            I boschi e i prati attorno al rifugio offrono uno scenario ricco per attività di educazione ambientale:
+            riconoscimento di alberi e piante, osservazione di tracce di animali, lettura delle trasformazioni
+            del paesaggio montano.
+        </p>
+        <p>
+            Lontano dal traffico e dal rumore, il Rifugio Salvin permette di sperimentare il silenzio della montagna
+            e di riscoprire un rapporto più diretto con i ritmi naturali, anche attraverso semplici attività:
+            passeggiate serali, osservazione del cielo notturno, ascolto dei suoni del bosco.
+        </p>
+    </section>
+
+    <section id="info">
+        <div class="pill">Informazioni</div>
+        <h3>Informazioni pratiche</h3>
+        <div class="box">
+            <strong>Dove si trova</strong><br>
+            Rifugio Salvin – Monastero di Lanzo (TO)<br>
+            <em>[qui puoi aggiungere indicazioni più precise, quota, ecc.]</em>
+        </div>
+        <p style="margin-top:14px;">
+            Per dettagli su aperture, modalità di accesso con gruppi, disponibilità e accordi organizzativi,
+            è possibile contattare direttamente i referenti del rifugio o dell’associazione che gestisce le attività.
+        </p>
+    </section>
+
+    <section id="notelegali">
+        <div class="pill">Trasparenza</div>
+        <h3>Note legali e privacy</h3>
+        <p style="font-size:0.93rem;">
+            Questo sito ha carattere puramente informativo: non raccoglie dati personali tramite moduli di contatto,
+            non utilizza cookie di profilazione e non impiega strumenti di analisi statistica di terze parti.
+        </p>
+        <p style="font-size:0.93rem;">
+            Eventuali log tecnici generati dal provider che ospita il sito (ad esempio indirizzo IP, data e ora di
+            accesso) sono utilizzati solo per garantire il corretto funzionamento e la sicurezza dell’infrastruttura.
+        </p>
+        <p style="font-size:0.9rem;">
+            Per ogni informazione relativa alla gestione delle attività con i gruppi, alle responsabilità e alla
+            sicurezza sui sentieri, si fa riferimento alla documentazione fornita dall’associazione e ai canali
+            ufficiali di contatto.
+        </p>
+    </section>
+</main>
+
+<footer>
+    <div>
+        &copy; <span id="anno"></span> Rifugio Salvin – Monastero di Lanzo. Tutti i diritti riservati.
+    </div>
+</footer>
+
+<script>
+    document.getElementById('anno').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
 

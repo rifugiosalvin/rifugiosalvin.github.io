@@ -4,22 +4,30 @@
     <meta charset="UTF-8">
     <title>Rifugio Salvin – Monastero di Lanzo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Rifugio Salvin a Monastero di Lanzo: esperienze nella natura, sentieri, lago di Monastero, Uja di Bellavarda, ristorante, camere, baita e attività con i ragazzi.">
+    <meta name="description"
+          content="Rifugio Salvin a Monastero di Lanzo: esperienze nella natura, sentieri, lago di Monastero, Uja di Bellavarda, ristorante, camere, baita e attività con i ragazzi.">
 
     <!-- Libreria per animazioni di scroll (solo grafica) -->
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 
     <style>
         :root {
-            --blu-scuro: #123e6b;
-            --blu-chiaro: #1f6fa5;
+            --notte: #020817;
+            --blu-scuro: #0b192f;
+            --blu-chiaro: #1d4ed8;
             --verde: #3c7c4c;
-            --oro: #e0a020;
-            --sfondo: #f4f4f6;
-            --testo: #222;
+            --oro: #f5b316;
+            --crema: #f3eee3;
+            --sfondo: radial-gradient(circle at top, #0b172c 0, #020817 42%, #050816 100%);
+            --testo: #e5e7eb;
+            --testo-soft: #9ca3af;
+            --pannello: rgba(15, 23, 42, 0.88);
+            --bordo: rgba(148, 163, 184, 0.35);
         }
 
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             margin: 0;
@@ -30,103 +38,295 @@
             scroll-behavior: smooth;
         }
 
-        /* HERO ------------------------------------------------------ */
+        /* BASE LAYOUT -------------------------------------------------- */
+
+        .page-wrap {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(248, 250, 252, 0.1), transparent 55%);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        section {
+            background: var(--pannello);
+            margin-top: 26px;
+            padding: 24px;
+            border-radius: 18px;
+            box-shadow:
+                0 20px 45px rgba(15, 23, 42, 0.9),
+                0 0 0 1px rgba(148, 163, 184, 0.25);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+        }
+
+        section h3 {
+            margin-top: 0;
+            color: #e5e7eb;
+            font-size: 1.6rem;
+            letter-spacing: 0.04em;
+        }
+
+        section > p {
+            color: var(--testo-soft);
+            font-size: 0.95rem;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(15, 118, 110, 0.25);
+            color: #a5f3fc;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 10px;
+        }
+
+        .pill span:first-child {
+            font-size: 0.8rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 22px;
+        }
+
+        .box {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 14px;
+            padding: 14px;
+            border: 1px solid var(--bordo);
+            font-size: 0.95rem;
+        }
+
+        .box h4 {
+            margin-top: 0;
+            margin-bottom: 6px;
+            font-size: 1rem;
+            color: #e5e7eb;
+        }
+
+        .evidenza {
+            border-left: 3px solid #22c55e;
+            padding-left: 12px;
+            margin: 12px 0 4px;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            background: radial-gradient(circle at left, rgba(34, 197, 94, 0.18), transparent 70%);
+            color: #d4d4d8;
+        }
+
+        /* HERO --------------------------------------------------------- */
 
         header {
             position: relative;
-            background:
-                linear-gradient(135deg, rgba(3,18,32,0.76), rgba(10,60,110,0.82)),
-                url("https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg")
-                center/cover no-repeat;
-            color: white;
-            padding: 70px 20px 90px;
+            color: #e5e7eb;
+            padding: 80px 20px 80px;
             text-align: center;
             overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at top, rgba(56, 189, 248, 0.24), transparent 55%),
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.4), rgba(2, 6, 23, 0.95));
+            mix-blend-mode: screen;
+            pointer-events: none;
         }
 
         header::after {
             content: "";
             position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at bottom, rgba(255,255,255,0.18), transparent 60%);
-            pointer-events: none;
+            left: 50%;
+            bottom: -1px;
+            transform: translateX(-50%);
+            width: 120%;
+            height: 80px;
+            background:
+                radial-gradient(circle at top, rgba(15, 23, 42, 1) 0, transparent 60%),
+                linear-gradient(to bottom, rgba(15, 23, 42, 1), rgba(15, 23, 42, 1));
+            clip-path: polygon(0 35%, 15% 45%, 28% 40%, 40% 48%, 55% 38%, 70% 46%, 85% 42%, 100% 50%, 100% 100%, 0 100%);
         }
 
-        header .contenuto-hero {
+        .hero-inner {
             position: relative;
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.9fr);
+            gap: 34px;
+            align-items: center;
         }
 
-        header h1 {
-            margin: 0 0 8px;
-            font-size: 2.4rem;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-        }
-
-        header h2 {
-            margin: 0 0 18px;
-            font-weight: 400;
-            font-size: 1.05rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            opacity: 0.9;
-        }
-
-        header p {
-            max-width: 650px;
-            margin: 0 auto 22px;
-            font-size: 0.98rem;
-            opacity: 0.97;
+        .hero-text {
+            text-align: left;
         }
 
         .badge-hero {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             padding: 6px 12px;
             border-radius: 999px;
-            background: rgba(12, 95, 60, 0.88);
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(148, 163, 184, 0.6);
             font-size: 0.8rem;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
-        .badge-hero span {
+        .badge-hero span:first-child {
+            font-size: 1.1rem;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: clamp(2.4rem, 4vw, 3rem);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero-sub {
             font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: #9ca3af;
+            margin-bottom: 18px;
+        }
+
+        header p {
+            max-width: 520px;
+            margin: 0;
+            font-size: 0.98rem;
+            color: #e5e7eb;
         }
 
         .pill-hero {
-            display: inline-block;
-            padding: 8px 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 16px;
             border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.7);
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            margin-top: 18px;
+            color: #e5e7eb;
+        }
+
+        .hero-meta {
+            margin-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
             font-size: 0.8rem;
-            text-transform: uppercase;
+            color: #9ca3af;
+        }
+
+        .hero-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hero-meta span::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: #22c55e;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 280px;
+        }
+
+        .hero-card-main {
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            overflow: hidden;
+            background:
+                linear-gradient(135deg, rgba(15,23,42,0.85), rgba(30,64,175,0.35)),
+                url("https://images.pexels.com/photos/2387418/pexels-photo-2387418.jpeg") center/cover no-repeat;
+            border: 1px solid rgba(148, 163, 184, 0.65);
+            box-shadow: 0 25px 60px rgba(15, 23, 42, 0.9);
+        }
+
+        .hero-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at bottom, rgba(15,23,42,0.6), transparent 60%);
+        }
+
+        .hero-card-bottom {
+            position: absolute;
+            left: 10%;
+            bottom: 12px;
+            right: 10%;
+            padding: 10px 12px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.92);
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            font-size: 0.78rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #e5e7eb;
+        }
+
+        .hero-card-bottom strong {
+            font-size: 0.85rem;
+        }
+
+        .hero-tagline {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(8, 47, 73, 0.9);
+            border-radius: 999px;
+            padding: 6px 10px;
+            font-size: 0.74rem;
             letter-spacing: 0.12em;
-        }
-
-        .sottotitolo-hero {
-            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 0.18em;
-            margin-top: 6px;
-            opacity: 0.9;
         }
 
-        /* NAV ------------------------------------------------------ */
+        .hero-chip {
+            position: absolute;
+            top: 20px;
+            right: 18px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(8, 47, 73, 0.9);
+            font-size: 0.75rem;
+        }
+
+        /* NAV --------------------------------------------------------- */
 
         nav {
             position: sticky;
             top: 0;
-            z-index: 10;
-            background: #ffffffdd;
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid #dcdce3;
+            z-index: 20;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(30, 64, 175, 0.45);
         }
 
         nav .nav-inner {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             display: flex;
             flex-wrap: wrap;
@@ -137,79 +337,16 @@
 
         nav a {
             text-decoration: none;
-            color: var(--blu-scuro);
-            font-size: 0.9rem;
+            color: #e5e7eb;
+            font-size: 0.86rem;
             padding: 7px 12px;
             border-radius: 999px;
+            border: 1px solid transparent;
         }
 
         nav a:hover {
-            background: var(--blu-scuro);
-            color: white;
-        }
-
-        /* SECTIONS ------------------------------------------------- */
-
-        main {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 24px 16px 40px;
-        }
-
-        section {
-            background: white;
-            margin-top: 26px;
-            padding: 24px;
-            border-radius: 12px;
-            box-shadow: 0 14px 30px rgba(0,0,0,0.06);
-        }
-
-        section h3 {
-            margin-top: 0;
-            color: var(--blu-scuro);
-            font-size: 1.3rem;
-        }
-
-        .pill {
-            display: inline-block;
-            padding: 3px 9px;
-            border-radius: 999px;
-            background: #e2eef8;
-            color: var(--blu-scuro);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 8px;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1.3fr 1fr;
-            gap: 20px;
-        }
-
-        .box {
-            background: #fafafa;
-            border-radius: 10px;
-            padding: 14px;
-            border: 1px solid #e0e0e5;
-            font-size: 0.95rem;
-        }
-
-        .box h4 {
-            margin-top: 0;
-            margin-bottom: 6px;
-            font-size: 1rem;
-            color: var(--blu-scuro);
-        }
-
-        .evidenza {
-            border-left: 4px solid var(--verde);
-            padding-left: 12px;
-            margin: 8px 0;
-            font-size: 0.95rem;
-            background: #f1f7f3;
-            border-radius: 4px;
+            border-color: rgba(96, 165, 250, 0.7);
+            background: rgba(15, 23, 42, 0.95);
         }
 
         /* STATISTICHE ------------------------------------------------ */
@@ -222,62 +359,68 @@
         }
 
         .stat-card {
-            background: #0f2845;
-            color: #f5f7ff;
-            border-radius: 10px;
+            background: radial-gradient(circle at top left, rgba(59,130,246,0.3), rgba(15,23,42,0.95));
+            color: #e5e7eb;
+            border-radius: 16px;
             padding: 14px;
             text-align: center;
+            border: 1px solid rgba(37, 99, 235, 0.65);
         }
 
         .stat-numero {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 600;
             display: block;
         }
 
         .stat-label {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
-        /* TIMELINE GIORNATE ---------------------------------------- */
+        /* TIMELINE --------------------------------------------------- */
 
         .timeline {
             display: grid;
             gap: 18px;
+            margin-top: 10px;
         }
 
         .timeline-card {
             position: relative;
-            padding: 16px 16px 14px 18px;
-            border-radius: 10px;
-            background: #f8fafc;
-            border: 1px solid #dee3ec;
+            padding: 16px 16px 14px 20px;
+            border-radius: 14px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--bordo);
         }
 
         .timeline-card::before {
-            content: "◆";
+            content: "";
             position: absolute;
-            left: -10px;
-            top: 16px;
-            color: var(--blu-chiaro);
-            font-size: 0.7rem;
+            left: 7px;
+            top: 14px;
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: #38bdf8;
+            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3);
         }
 
         .timeline-card h4 {
             margin: 0 0 6px;
-            font-size: 1.02rem;
-            color: var(--blu-scuro);
+            font-size: 1.08rem;
+            color: #e5e7eb;
         }
 
         .timeline-card p {
             margin: 4px 0;
-            font-size: 0.95rem;
+            font-size: 0.94rem;
+            color: var(--testo-soft);
         }
 
-        /* ESPERIENZE LABORATORI ------------------------------------ */
+        /* ESPERIENZE ------------------------------------------------- */
 
         .esperienze-grid {
             display: grid;
@@ -287,55 +430,59 @@
         }
 
         .esperienza {
-            background: #fcfbf7;
-            border-radius: 10px;
+            background: radial-gradient(circle at top left, rgba(249, 115, 22, 0.22), rgba(15, 23, 42, 0.96));
+            border-radius: 14px;
             padding: 14px;
-            border: 1px solid #eee2c2;
+            border: 1px solid rgba(251, 146, 60, 0.5);
             font-size: 0.95rem;
+            color: #fefce8;
         }
 
         .esperienza strong {
             display: block;
             margin-bottom: 4px;
-            color: #8a6714;
         }
 
-        /* TABS PAESAGGI -------------------------------------------- */
+        /* TABS PAESAGGI ---------------------------------------------- */
 
         .tabs {
             margin-top: 14px;
         }
 
         .tabs-nav {
-            display: flex;
+            display: inline-flex;
             flex-wrap: wrap;
             gap: 8px;
             margin-bottom: 12px;
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 999px;
+            padding: 4px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
         }
 
         .tabs-nav button {
-            border: 1px solid #d3d7e0;
-            background: #f3f4f8;
+            border: none;
+            background: transparent;
             border-radius: 999px;
-            padding: 6px 12px;
-            font-size: 0.88rem;
+            padding: 6px 14px;
+            font-size: 0.85rem;
             cursor: pointer;
-            color: #303548;
+            color: #cbd5f5;
         }
 
         .tabs-nav button.attiva {
-            background: var(--blu-scuro);
+            background: radial-gradient(circle at top left, #2563eb, #0ea5e9);
             color: white;
-            border-color: var(--blu-scuro);
         }
 
         .tab-content {
             display: none;
-            background: #f9fafb;
-            border-radius: 10px;
-            border: 1px solid #dde2ee;
+            background: rgba(15, 23, 42, 0.92);
+            border-radius: 14px;
+            border: 1px solid var(--bordo);
             padding: 14px;
             font-size: 0.95rem;
+            color: var(--testo-soft);
         }
 
         .tab-content.attivo {
@@ -344,10 +491,10 @@
 
         .tab-content h4 {
             margin-top: 0;
-            color: var(--blu-scuro);
+            color: #e5e7eb;
         }
 
-        /* ALBERI INTERATTIVI --------------------------------------- */
+        /* ALBERI INTERATTIVI ----------------------------------------- */
 
         .alberi-grid {
             display: grid;
@@ -357,17 +504,18 @@
         }
 
         .albero {
-            background: #f8fafc;
-            border-radius: 10px;
-            border: 1px solid #dde3ef;
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 12px;
+            border: 1px solid var(--bordo);
             padding: 10px 12px;
             cursor: pointer;
-            transition: background 0.2s, transform 0.15s;
+            transition: background 0.2s, transform 0.15s, border-color 0.15s;
         }
 
         .albero:hover {
-            background: #eef3fb;
+            background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.2), rgba(15, 23, 42, 0.95));
             transform: translateY(-2px);
+            border-color: rgba(34, 197, 94, 0.7);
         }
 
         .albero-titolo {
@@ -375,7 +523,7 @@
             justify-content: space-between;
             align-items: center;
             font-size: 0.95rem;
-            color: #1e293b;
+            color: #e5e7eb;
         }
 
         .albero-titolo span:last-child {
@@ -387,13 +535,14 @@
             margin-top: 6px;
             font-size: 0.9rem;
             display: none;
+            color: var(--testo-soft);
         }
 
         .albero.aperto .albero-testo {
             display: block;
         }
 
-        /* SENTIERO STEPS ------------------------------------------- */
+        /* SENTIERO STEPS --------------------------------------------- */
 
         .steps {
             display: grid;
@@ -403,19 +552,19 @@
 
         .step {
             position: relative;
-            padding: 12px 12px 10px 26px;
-            border-radius: 10px;
-            background: #f8fafc;
-            border: 1px solid #dde2ee;
+            padding: 12px 12px 10px 30px;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--bordo);
         }
 
         .step::before {
             content: attr(data-numero);
             position: absolute;
-            left: 8px;
-            top: 10px;
+            left: 9px;
+            top: 12px;
             font-size: 0.78rem;
-            background: var(--blu-chiaro);
+            background: #1d4ed8;
             color: white;
             width: 18px;
             height: 18px;
@@ -428,10 +577,15 @@
         .step strong {
             display: block;
             margin-bottom: 4px;
-            color: var(--blu-scuro);
+            color: #e5e7eb;
         }
 
-        /* CARDS RISTORANTE / PREZZI -------------------------------- */
+        .step p {
+            font-size: 0.93rem;
+            color: var(--testo-soft);
+        }
+
+        /* CARDS RISTORANTE / PREZZI ---------------------------------- */
 
         .cards-prezzi {
             display: grid;
@@ -441,27 +595,28 @@
         }
 
         .card-prezzo {
-            background: #fcfbf7;
-            border-radius: 10px;
-            border: 1px solid #eee2c2;
+            background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.16), rgba(15, 23, 42, 0.96));
+            border-radius: 14px;
+            border: 1px solid rgba(250, 204, 21, 0.55);
             padding: 14px;
             font-size: 0.93rem;
+            color: #fef9c3;
         }
 
         .card-prezzo h4 {
             margin: 0 0 6px;
-            color: #7a5a10;
+            color: #facc15;
             font-size: 1rem;
         }
 
         .tag-orario {
             display: inline-block;
-            padding: 2px 8px;
+            padding: 3px 9px;
             border-radius: 999px;
-            background: #f3e0b8;
+            background: rgba(234, 179, 8, 0.28);
             font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.14em;
             margin-bottom: 6px;
         }
 
@@ -475,24 +630,25 @@
             margin-bottom: 3px;
         }
 
-        /* GALLERIA -------------------------------------------------- */
+        /* GALLERIA --------------------------------------------------- */
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
             gap: 14px;
             margin-top: 12px;
         }
 
         .gallery-item {
             position: relative;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            border: none;
+            border: 1px solid rgba(148, 163, 184, 0.6);
             padding: 0;
             cursor: pointer;
-            min-height: 140px;
+            min-height: 150px;
             text-align: left;
+            background: #020617;
         }
 
         .gallery-bg {
@@ -500,31 +656,31 @@
             inset: 0;
             background-size: cover;
             background-position: center;
-            filter: brightness(0.7);
+            filter: brightness(0.8);
             transition: transform 0.3s ease, filter 0.3s ease;
         }
 
         .gallery-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+            background: linear-gradient(to top, rgba(15,23,42,0.9), transparent);
         }
 
         .gallery-label {
             position: absolute;
             left: 10px;
             bottom: 10px;
-            color: #fff;
+            color: #f9fafb;
             font-size: 0.9rem;
             text-shadow: 0 2px 4px rgba(0,0,0,0.7);
         }
 
         .gallery-item:hover .gallery-bg {
-            transform: scale(1.05);
-            filter: brightness(0.85);
+            transform: scale(1.06);
+            filter: brightness(0.95);
         }
 
-        /* LIGHTBOX -------------------------------------------------- */
+        /* LIGHTBOX --------------------------------------------------- */
 
         .lightbox {
             position: fixed;
@@ -542,17 +698,18 @@
         .lightbox-backdrop {
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
         }
 
         .lightbox-content {
             position: relative;
             max-width: 900px;
-            width: 90%;
-            background: #050b14;
-            border-radius: 12px;
+            width: 92%;
+            background: #020617;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+            border: 1px solid rgba(148, 163, 184, 0.7);
         }
 
         .lightbox-image {
@@ -566,7 +723,7 @@
             margin: 0;
             padding: 10px 14px 12px;
             font-size: 0.9rem;
-            color: #e5ecff;
+            color: #e5e7eb;
         }
 
         .lightbox-close {
@@ -574,32 +731,32 @@
             top: 8px;
             right: 10px;
             border: none;
-            background: rgba(0,0,0,0.5);
+            background: rgba(15,23,42,0.85);
             color: white;
             font-size: 1.2rem;
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             cursor: pointer;
         }
 
         .lightbox-close:hover {
-            background: rgba(0,0,0,0.7);
+            background: rgba(15,23,42,1);
         }
 
-        /* FOOTER ---------------------------------------------------- */
+        /* FOOTER ----------------------------------------------------- */
 
         footer {
-            border-top: 1px solid #dcdce3;
-            padding: 16px 16px 26px;
+            border-top: 1px solid rgba(30, 64, 175, 0.6);
+            padding: 18px 16px 26px;
             font-size: 0.8rem;
-            color: #666;
-            max-width: 1000px;
+            color: #9ca3af;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         footer a {
-            color: var(--blu-scuro);
+            color: #93c5fd;
             text-decoration: none;
         }
 
@@ -607,620 +764,659 @@
             text-decoration: underline;
         }
 
+        @media (max-width: 880px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: left;
+                row-gap: 24px;
+            }
+            .hero-text {
+                order: 1;
+            }
+            .hero-visual {
+                order: 0;
+                height: 240px;
+            }
+        }
+
         @media (max-width: 720px) {
             header {
-                padding: 46px 14px 64px;
+                padding: 52px 14px 60px;
             }
             header h1 {
-                font-size: 1.9rem;
-            }
-            .grid-2 {
-                grid-template-columns: 1fr;
+                font-size: 2.1rem;
             }
             section {
                 padding: 20px;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+<div class="page-wrap">
 
-<header data-aos="fade-down">
-    <div class="contenuto-hero">
-        <div class="badge-hero">
-            <span>⛰️</span>
-            <span>Monastero di Lanzo · Valli di Lanzo (TO)</span>
-        </div>
-        <h1>Rifugio Salvin</h1>
-        <h2>Una meraviglia naturale tra sentieri, boschi e montagne</h2>
-        <p>
-            Un rifugio raggiungibile solo a piedi, a circa 1580 metri di quota: qui il trekking,
-            i paesaggi naturali e le esperienze con i ragazzi diventano un percorso educativo
-            a cielo aperto.
-        </p>
-        <div class="sottotitolo-hero">
-            Spese dai sapori al riposo
-        </div>
-        <div style="margin-top:14px;">
-            <span class="pill-hero">Esperienze in luogo · Paesaggi naturali · Il nostro percorso</span>
-        </div>
-    </div>
-</header>
-
-<nav>
-    <div class="nav-inner">
-        <a href="#rifugio">Il rifugio</a>
-        <a href="#paesaggi">Paesaggi e natura</a>
-        <a href="#sentiero">Il sentiero</a>
-        <a href="#esperienza">Esperienza ragazzi</a>
-        <a href="#attivita">Attività</a>
-        <a href="#ristorante">Ristorante</a>
-        <a href="#alloggi">Alloggi</a>
-        <a href="#galleria">Galleria</a>
-        <a href="#notelegali">Note legali</a>
-    </div>
-</nav>
-
-<main>
-    <!-- IL RIFUGIO -->
-    <section id="rifugio" data-aos="fade-up">
-        <div class="pill">Il luogo</div>
-        <h3>Il Rifugio Salvin – Una meraviglia naturale</h3>
-        <div class="grid-2">
-            <div>
-                <p>
-                    Il <strong>Rifugio Salvin</strong> è stato pensato per chi ama il trekking e per chi desidera
-                    mettersi davvero a contatto con la natura. È immerso nel territorio del comune di
-                    <strong>Monastero di Lanzo</strong>, a circa <strong>1580 metri di altezza</strong>, e offre servizi
-                    di pernottamento e ristorazione in un contesto semplice, autentico e lontano dal turismo di massa.
-                </p>
-                <p>
-                    Il rifugio è circondato da boschi, sentieri e panorami aperti sulla valle: un luogo ideale
-                    per famiglie, gruppi e soprattutto per esperienze scolastiche, in cui i ragazzi possono
-                    vivere la montagna non solo come “gita”, ma come occasione per osservare, capire e sperimentare.
-                </p>
-            </div>
-            <div class="box">
-                <h4>Vista dal rifugio</h4>
-                <p>
-                    All’esterno della sala da pranzo si trova un piazzale con panchine da cui è possibile
-                    ammirare un <strong>paesaggio meraviglioso</strong>: montagne, boschi e, nelle giornate limpide,
-                    le <strong>luci dei paesi sottostanti</strong> che si accendono una dopo l’altra, soprattutto quando
-                    la nebbia risale dalla valle e avvolge il paesaggio.
-                </p>
-            </div>
-        </div>
-
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-numero" data-target="1580">0</span>
-                <span class="stat-label">metri di quota</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-numero" data-target="60">0</span>
-                <span class="stat-label">coperti ristorante</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-numero" data-target="8">0</span>
-                <span class="stat-label">camere ristrutturate</span>
-            </div>
-        </div>
-
-        <div class="evidenza" style="margin-top:16px;">
-            Un rifugio raggiungibile solo a piedi: arrivare al Salvin significa già iniziare l’esperienza,
-            passo dopo passo, lungo il sentiero.
-        </div>
-    </section>
-
-    <!-- PAESAGGI E NATURA: MARSAGLIA, LAGO, UJA + ALBERI -->
-    <section id="paesaggi" data-aos="fade-up">
-        <div class="pill">Paesaggi naturali</div>
-        <h3>Marsaglia, lago di Monastero, Uja di Bellavarda</h3>
-        <p>
-            Attorno al rifugio si trovano luoghi di grande interesse naturalistico e culturale: antichi
-            santuari, laghi alpini, punti panoramici sulle valli di Lanzo e sulle montagne circostanti.
-            Qui sotto puoi esplorare alcune tappe significative del territorio.
-        </p>
-
-        <!-- TABS INTERATTIVI -->
-        <div class="tabs">
-            <div class="tabs-nav">
-                <button type="button" class="tab-btn attiva" data-target="tab-marsaglia">Marsaglia</button>
-                <button type="button" class="tab-btn" data-target="tab-lago">Lago di Monastero</button>
-                <button type="button" class="tab-btn" data-target="tab-bellavarda">Uja di Bellavarda</button>
-            </div>
-
-            <div id="tab-marsaglia" class="tab-content attivo">
-                <h4>Marsaglia – Santuario e borgo</h4>
-                <p>
-                    <strong>Marsaglia</strong> è un antico santuario dedicato all’<strong>Assunzione di Maria Vergine</strong>.
-                    Attorno al santuario si trovano le caratteristiche casette in pietra, costruite per garantire
-                    isolamento termico e resistenza nel tempo.
-                </p>
-                <p>
-                    Marsaglia è una tappa importante lungo il percorso verso il rifugio e un luogo adatto per fare
-                    una pausa, osservare l’architettura tradizionale e, per i gruppi, consumare il pranzo al sacco.
-                </p>
-            </div>
-
-            <div id="tab-lago" class="tab-content">
-                <h4>Lago di Monastero</h4>
-                <p>
-                    Il <strong>lago di Monastero</strong> si trova nelle valli di Lanzo, circa 200 metri a ovest del
-                    rifugio. Il percorso è percorribile sia a piedi sia in mountain bike e parte proprio dal
-                    <strong>Rifugio Salvin</strong>.
-                </p>
-                <p>
-                    Dal lago si possono intraprendere diversi itinerari:
-                </p>
-                <ul>
-                    <li>
-                        Tornare all’<strong>Alpe di Monastero</strong> attraverso un sentiero che conduce direttamente
-                        al rifugio (segnavia 407).
-                    </li>
-                    <li>
-                        Proseguire lungo la strada fino al <strong>Colle di Perascritta</strong> (2158 m), da cui
-                        si apre la vista sulla Val Locana e sul massiccio del Gran Paradiso.
-                    </li>
-                    <li>
-                        Dall’<strong>Alpe di Costapiana</strong> imboccare il sentiero 408A, che si ricongiunge con
-                        il sentiero proveniente dalla Vaccarezza e riporta in un paio d’ore al punto di partenza.
-                    </li>
-                </ul>
-            </div>
-
-            <div id="tab-bellavarda" class="tab-content">
-                <h4>Uja di Bellavarda</h4>
-                <p>
-                    Dalla zona del lago di Monastero, proseguendo verso l’<strong>Alpe di Monastero</strong>, si
-                    imbocca sulla sinistra una traccia che conduce all’<strong>Uja di Bellavarda</strong>, cima delle
-                    Alpi Graie posta a circa <strong>2345 m</strong> sul livello del mare.
-                </p>
-                <p>
-                    La salita richiede circa <strong>3 ore e mezza</strong> dal lago di Monastero e permette di
-                    raggiungere un punto panoramico di grande interesse, da cui si possono osservare in particolare
-                    i paesi di <strong>Chialamberto, Cantoira e Locana</strong>.
-                </p>
-            </div>
-        </div>
-
-        <hr style="margin:22px 0;border:none;border-top:1px solid #e2e5ee;">
-
-        <h3>Gli alberi del bosco</h3>
-        <p>
-            Lungo i sentieri che portano al rifugio è possibile riconoscere diverse specie di alberi tipici della
-            zona. Cliccando sulle schede qui sotto è possibile leggere alcune curiosità naturalistiche e storiche.
-        </p>
-
-        <div class="alberi-grid">
-            <div class="albero" data-albero="nocciolo">
-                <div class="albero-titolo">
-                    <span><strong>Nocciolo</strong></span>
-                    <span>＋</span>
+    <!-- HERO ------------------------------------------------------ -->
+    <header data-aos="fade-down">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <div class="badge-hero">
+                    <span>⛰️</span>
+                    <span>Monastero di Lanzo · Valli di Lanzo (TO)</span>
                 </div>
-                <div class="albero-testo">
+                <h1>Rifugio Salvin</h1>
+                <div class="hero-sub">Una meraviglia naturale tra sentieri, boschi e montagne</div>
+                <p>
+                    Un rifugio raggiungibile solo a piedi, a circa <strong>1580 metri</strong> di quota: qui il trekking,
+                    i paesaggi naturali e le esperienze con i ragazzi diventano un percorso educativo a cielo aperto.
+                </p>
+                <div class="pill-hero">
+                    <span>Esperienze in luogo · Paesaggi naturali · Il nostro percorso</span>
+                </div>
+                <div class="hero-meta">
+                    <span>Esperienze scolastiche in montagna</span>
+                    <span>Prodotti locali e vita in rifugio</span>
+                </div>
+            </div>
+
+            <div class="hero-visual" aria-hidden="true">
+                <div class="hero-card-main">
+                    <div class="hero-card-overlay"></div>
+                    <div class="hero-tagline">Alba, boschi, silenzio</div>
+                    <div class="hero-chip">Solo a piedi · 1580 m</div>
+                    <div class="hero-card-bottom">
+                        <div>
+                            <strong>Rifugio Salvin</strong><br>
+                            Trekking, natura e didattica tra le Valli di Lanzo.
+                        </div>
+                        <div style="text-align:right;font-size:0.78rem;">
+                            <div>Sentieri · Lago di Monastero</div>
+                            <div>Uja di Bellavarda · Baita Allen</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAV -------------------------------------------------------- -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#rifugio">Il rifugio</a>
+            <a href="#paesaggi">Paesaggi e natura</a>
+            <a href="#sentiero">Il sentiero</a>
+            <a href="#esperienza">Esperienza ragazzi</a>
+            <a href="#attivita">Attività</a>
+            <a href="#ristorante">Ristorante</a>
+            <a href="#alloggi">Alloggi</a>
+            <a href="#galleria">Galleria</a>
+            <a href="#notelegali">Note legali</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- IL RIFUGIO -------------------------------------------- -->
+        <section id="rifugio" data-aos="fade-up">
+            <div class="pill"><span>📍</span><span>Il luogo</span></div>
+            <h3>Il Rifugio Salvin – Una meraviglia naturale</h3>
+            <div class="grid-2">
+                <div>
                     <p>
-                        Le foglie del <strong>nocciolo</strong> sono tondeggianti con una piccola punta. In epoca
-                        medievale il nocciolo era simbolo di fertilità: romani e francesi donavano piante di
-                        nocciolo come augurio di fecondità e prosperità agli sposi.
+                        Il <strong>Rifugio Salvin</strong> è stato pensato per chi ama il trekking e per chi desidera
+                        mettersi davvero a contatto con la natura. È immerso nel territorio del comune di
+                        <strong>Monastero di Lanzo</strong>, a circa <strong>1580 metri di altezza</strong>, e offre servizi
+                        di pernottamento e ristorazione in un contesto semplice, autentico e lontano dal turismo di massa.
+                    </p>
+                    <p>
+                        Il rifugio è circondato da boschi, sentieri e panorami aperti sulla valle: un luogo ideale
+                        per famiglie, gruppi e soprattutto per esperienze scolastiche, in cui i ragazzi possono
+                        vivere la montagna non solo come “gita”, ma come occasione per osservare, capire e sperimentare.
                     </p>
                 </div>
-            </div>
-
-            <div class="albero" data-albero="frassino">
-                <div class="albero-titolo">
-                    <span><strong>Frassino</strong></span>
-                    <span>＋</span>
-                </div>
-                <div class="albero-testo">
-                    <p>
-                        Il <strong>frassino</strong> è riconoscibile perché le singole foglioline sono unite su
-                        un unico rametto. È importante anche in campo medico: da esso si estrae la
-                        <strong>manna</strong>, una linfa utilizzata come fluidificante e calmante.
-                    </p>
-                </div>
-            </div>
-
-            <div class="albero" data-albero="acero">
-                <div class="albero-titolo">
-                    <span><strong>Acero</strong></span>
-                    <span>＋</span>
-                </div>
-                <div class="albero-testo">
-                    <p>
-                        Le foglie dell’<strong>acero</strong> hanno una forma che ricorda una stella. L’“acero da zucchero”
-                        è la fonte del noto <strong>sciroppo d’acero</strong>, prodotto con proprietà antiossidanti
-                        e utilizzato anche come supporto in caso di gastrite.
-                    </p>
-                </div>
-            </div>
-
-            <div class="albero" data-albero="castagno">
-                <div class="albero-titolo">
-                    <span><strong>Castagno</strong></span>
-                    <span>＋</span>
-                </div>
-                <div class="albero-testo">
-                    <p>
-                        Le foglie del <strong>castagno</strong> sono allungate e presentano piccoli “spigoli” lungo
-                        i bordi. Il frutto, la castagna, è racchiuso nel caratteristico riccio. Il castagno è uno
-                        degli alberi più longevi: alcuni esemplari, come il celebre “Castagno dei Cento Cavalli”
-                        sull’Etna, hanno un’età stimata di oltre mille anni.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- IL SENTIERO -->
-    <section id="sentiero" data-aos="fade-up">
-        <div class="pill">Il nostro percorso</div>
-        <h3>Il sentiero per il Rifugio Salvin</h3>
-        <p>
-            Per raggiungere il rifugio non si arriva in auto: il percorso prevede una parte in autobus o in macchina
-            e poi una camminata che diventa il vero inizio dell’esperienza. Di seguito le principali tappe.
-        </p>
-
-        <div class="steps">
-            <div class="step" data-numero="1">
-                <strong>Punto di partenza – Località Mecca</strong>
-                <p>
-                    Si raggiunge in <strong>autobus o in macchina</strong> la località <strong>Mecca</strong>,
-                    frazione di Monastero di Lanzo. Da qui hanno inizio le escursioni sul territorio circostante.
-                </p>
-            </div>
-
-            <div class="step" data-numero="2">
-                <strong>Verso Marsaglia</strong>
-                <p>
-                    Da Mecca si percorre circa <strong>un’ora e quaranta minuti a piedi</strong> per arrivare a
-                    <strong>Marsaglia</strong>, posta a circa <strong>1330 m</strong> di quota. Qui si trova il
-                    santuario locale, dove è consigliato fermarsi per una pausa e consumare il proprio pranzo al sacco.
-                </p>
-            </div>
-
-            <div class="step" data-numero="3">
-                <strong>Ultimo tratto fino al rifugio</strong>
-                <p>
-                    Dopo la sosta a Marsaglia si prosegue lungo il sentiero per altri <strong>quaranta minuti</strong>
-                    di camminata, fino a giungere al <strong>Rifugio Salvin</strong>, a circa <strong>1580 m</strong>
-                    sul livello del mare.
-                </p>
-                <p>
-                    All’arrivo, i gestori del rifugio accolgono il gruppo e mettono a disposizione i loro prodotti,
-                    frutto dell’impresa agricola che portano avanti in loco.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ESPERIENZA DEI RAGAZZI -->
-    <section id="esperienza" data-aos="fade-up">
-        <div class="pill">Esperienza ragazzi</div>
-        <h3>Due giornate al Rifugio Salvin</h3>
-        <p>
-            Di seguito il racconto dell’esperienza vissuta dai ragazzi: dalla camminata di avvicinamento
-            all’accoglienza con tè e biscotti, dalla serata attorno al fuoco all’alba tra i monti, fino alle
-            attività pratiche con gli animali e i prodotti del rifugio.
-        </p>
-
-        <div class="timeline">
-            <div class="timeline-card">
-                <h4>Prima giornata – Arrivo, intervista e serata al falò</h4>
-                <p>
-                    Dopo la lunga camminata, appena arrivati al rifugio i proprietari hanno accolto il gruppo con
-                    <strong>tè caldo e biscotti fatti in casa</strong>, per far riprendere tutti dalla fatica del sentiero.
-                </p>
-                <p>
-                    Dopo un momento di pausa, è stata organizzata un’<strong>intervista ai proprietari del rifugio</strong>:
-                    hanno raccontato come viene gestita la vita quotidiana al Salvin, quali sono i ritmi, i lavori
-                    da svolgere e cosa significa vivere stabilmente in montagna.
-                </p>
-                <p>
-                    Alla sera è stata servita la <strong>cena con piatti tipici del luogo</strong>. A sorpresa, le
-                    insegnanti hanno preparato un <strong>falò sotto le stelle</strong>, con marshmallow e musica di
-                    sottofondo. L’atmosfera creata dal fuoco in quel momento ha reso la fine della giornata speciale
-                    e indimenticabile.
-                </p>
-            </div>
-
-            <div class="timeline-card">
-                <h4>Seconda giornata – Alba tra i monti</h4>
-                <p>
-                    La mattina seguente molti ragazzi si sono svegliati verso le <strong>7:30</strong> per osservare
-                    l’<strong>alba sorgere in mezzo ai monti</strong>. Faceva fresco, ma ne è valsa la pena:
-                    i colori del cielo sembravano quelli di un quadro.
-                </p>
-                <p>
-                    Questa esperienza ha reso evidente quanto la montagna cambi con la luce, con il silenzio
-                    e con i diversi momenti della giornata.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ATTIVITÀ CON GLI ANIMALI E I PRODOTTI -->
-    <section id="attivita" data-aos="fade-up">
-        <div class="pill">Attività</div>
-        <h3>Capre, formaggio e pane: imparare dalla vita quotidiana</h3>
-        <p>
-            Durante il soggiorno i ragazzi hanno potuto affiancare i gestori del rifugio in alcune attività
-            quotidiane, scoprendo in prima persona cosa significa lavorare con gli animali e con i prodotti
-            della montagna.
-        </p>
-
-        <div class="esperienze-grid">
-            <div class="esperienza">
-                <strong>🐐 Mungere le capre</strong>
-                <p>
-                    In mattinata, dopo la colazione, alcuni studenti hanno partecipato alla <strong>mungitura
-                    delle capre</strong>, guidati dai proprietari. È stato un momento concreto per capire da dove
-                    arriva il latte che usiamo ogni giorno.
-                </p>
-            </div>
-            <div class="esperienza">
-                <strong>🧀 Formaggio, tomini e ricotta</strong>
-                <p>
-                    Subito dopo la mungitura, il gruppo ha potuto osservare come si <strong>produce il formaggio</strong>
-                    e ha partecipato alla preparazione di <strong>tomini e ricotta</strong>. Vedere il latte
-                    trasformarsi in formaggio ha reso visibile un processo che di solito si dà per scontato.
-                </p>
-            </div>
-            <div class="esperienza">
-                <strong>🍞 Impastare e modellare il pane</strong>
-                <p>
-                    In seguito i ragazzi hanno creato diverse <strong>forme di pane</strong> – come trecce o cuori.
-                    Una volta lievitato e cotto, ciascuno ha potuto portare a casa il proprio pane, come ricordo
-                    personale dell’esperienza al rifugio.
-                </p>
-            </div>
-        </div>
-
-        <div class="evidenza" style="margin-top:16px;">
-            Tutte queste attività – dal cammino al lavoro con le mani – trasformano il soggiorno al Salvin
-            in una vera <strong>esperienza educativa</strong> sul valore del cibo, del territorio e della cura
-            per l’ambiente.
-        </div>
-    </section>
-
-    <!-- RISTORANTE -->
-    <section id="ristorante" data-aos="fade-up">
-        <div class="pill">Sapori</div>
-        <h3>Ristorante – Spese dai sapori al riposo</h3>
-        <div class="grid-2">
-            <div>
-                <p>
-                    Con una capienza di circa <strong>60 posti</strong> e due accoglienti sale interne, il ristorante
-                    del Rifugio Salvin è perfetto per <strong>pranzi conviviali</strong>, tavolate e feste private.
-                </p>
-                <p>
-                    La cucina propone un <strong>menù fisso</strong> che valorizza i prodotti locali a km 0, con
-                    specialità della valle e ingredienti di produzione propria, come
-                    <strong>tomini con bagnetto verde, salumi e formaggi artigianali</strong>.
-                </p>
-                <p>
-                    Per le famiglie è previsto un <strong>menù bimbi</strong> a prezzo ridotto e, su richiesta,
-                    sono disponibili <strong>seggioloni</strong>. Nel rifugio vengono prodotti pane, burro e formaggi,
-                    che possono anche essere acquistati direttamente in loco.
-                </p>
-                <p>
-                    La <strong>cottura al forno a legna</strong> è uno dei punti di forza della cucina: perfetta
-                    per carni saporite come cinghiale, brasato e spezzatino, accompagnate dalla celebre
-                    <strong>polenta concia</strong> con toma d’alpeggio e burro artigianale.
-                </p>
-            </div>
-            <div class="box">
-                <h4>Ricette di casa</h4>
-                <p style="font-size:0.93rem;">
-                    Tra i piatti e i dolci più frequenti al rifugio si possono trovare, ad esempio:
-                </p>
-                <ul style="font-size:0.9rem; padding-left:18px;">
-                    <li>bagnetto verde;</li>
-                    <li>torta di mele;</li>
-                    <li>cookies e crostata del Salvin;</li>
-                    <li>cuore caldo al cioccolato;</li>
-                    <li>risotto ai funghi porcini;</li>
-                    <li>flan di spinacini e porri.</li>
-                </ul>
-            </div>
-        </div>
-
-        <h4 style="margin-top:18px; color:#7a5a10;">Menù pranzo (servizio alle 12:30)</h4>
-        <div class="cards-prezzi">
-            <div class="card-prezzo">
-                <div class="tag-orario">Menù ridotto</div>
-                <h4>Scelta tra primo o secondo</h4>
-                <ul class="prezzi-elenco">
-                    <li>3 antipasti</li>
-                    <li>pasta <em>oppure</em> polenta con contorno</li>
-                    <li>formaggi della casa</li>
-                    <li>dolce</li>
-                    <li>acqua di sorgente, caffè e digestivo</li>
-                </ul>
-                <p style="margin-top:6px;">
-                    <strong>Adulti:</strong> € 25,00<br>
-                    <strong>Bambini (4–10 anni):</strong> € 12,00
-                </p>
-            </div>
-
-            <div class="card-prezzo">
-                <div class="tag-orario">Menù completo</div>
-                <h4>Tutto il percorso</h4>
-                <ul class="prezzi-elenco">
-                    <li>3 antipasti</li>
-                    <li>pasta</li>
-                    <li>polenta con contorno</li>
-                    <li>formaggi della casa</li>
-                    <li>dolce</li>
-                    <li>acqua di sorgente, caffè e digestivo</li>
-                </ul>
-                <p style="margin-top:6px;">
-                    <strong>Adulti:</strong> € 30,00<br>
-                    <strong>Bambini (4–10 anni):</strong> € 12,00
-                </p>
-            </div>
-        </div>
-        <p style="font-size:0.88rem; margin-top:10px;">
-            I prezzi comprendono acqua della sorgente, caffè e digestivo. Vini e altre bevande sono esclusi.
-        </p>
-
-        <h4 style="margin-top:18px; color:#7a5a10;">Merende (dalle ore 16:00)</h4>
-        <div class="cards-prezzi">
-            <div class="card-prezzo">
-                <div class="tag-orario">Merenda semplice</div>
-                <ul class="prezzi-elenco">
-                    <li>salame, lardo, tomini, acciughe</li>
-                    <li>formaggi</li>
-                    <li>acqua di sorgente</li>
-                    <li>dolce, caffè e digestivo</li>
-                </ul>
-                <p style="margin-top:6px;">
-                    <strong>Adulti:</strong> € 18,00<br>
-                    <strong>Bambini (4–10 anni):</strong> € 12,00
-                </p>
-            </div>
-
-            <div class="card-prezzo">
-                <div class="tag-orario">Merenda “sinoira”</div>
-                <ul class="prezzi-elenco">
-                    <li>salame, lardo, tomini, acciughe</li>
-                    <li>polenta e contorno</li>
-                    <li>formaggi</li>
-                    <li>acqua di sorgente</li>
-                    <li>dolce, caffè e digestivo</li>
-                </ul>
-                <p style="margin-top:6px;">
-                    <strong>Adulti:</strong> € 25,00<br>
-                    <strong>Bambini (4–10 anni):</strong> € 12,00
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ALLOGGI E BAITA -->
-    <section id="alloggi" data-aos="fade-up">
-        <div class="pill">Riposo</div>
-        <h3>Alloggi al rifugio e Baita Allen</h3>
-
-        <div class="grid-2">
-            <div>
-                <h4>Camere del rifugio</h4>
-                <p>
-                    Le <strong>8 camere</strong> del Rifugio Salvin, completamente ristrutturate e annesse
-                    all’edificio principale, offrono comfort e funzionalità grazie alla dotazione di
-                    <strong>biancheria e bagno privato</strong>.
-                </p>
-                <p>
-                    Le camere matrimoniali, con l’aggiunta di un letto a castello, sono perfette per ospitare
-                    famiglie o piccoli gruppi fino a <strong>4 persone</strong>.
-                </p>
                 <div class="box">
-                    <h4>Pensione completa – Camere</h4>
-                    <ul class="prezzi-elenco">
-                        <li><strong>Adulti:</strong> € 85,00</li>
-                        <li><strong>Bambini (4–10 anni):</strong> € 40,00</li>
-                        <li><strong>Bambini (0–4 anni):</strong> gratis</li>
-                    </ul>
-                    <p style="font-size:0.9rem; margin-top:6px;">
-                        La prenotazione è obbligatoria e viene confermata via email al ricevimento della caparra.
+                    <h4>Vista dal piazzale</h4>
+                    <p>
+                        All’esterno della sala da pranzo si trova un piazzale con panchine da cui è possibile
+                        ammirare un <strong>paesaggio meraviglioso</strong>: montagne, boschi e, nelle giornate limpide,
+                        le <strong>luci dei paesi sottostanti</strong> che si accendono una dopo l’altra, soprattutto quando
+                        la nebbia risale dalla valle e avvolge il paesaggio.
                     </p>
                 </div>
             </div>
 
-            <div>
-                <h4>Baita Allen</h4>
-                <p>
-                    La <strong>Baita Allen</strong> è una piccola casa in pietra situata a circa 50 metri dal rifugio,
-                    nel cuore delle Valli di Lanzo. Dispone di <strong>camera matrimoniale</strong>, bagno con piccola
-                    vasca, cucina e soggiorno con caminetto. Nel soggiorno possono essere aggiunti due letti singoli,
-                    per una capienza massima di <strong>4 persone</strong>.
-                </p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-numero" data-target="1580">0</span>
+                    <span class="stat-label">metri di quota</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-numero" data-target="60">0</span>
+                    <span class="stat-label">coperti ristorante</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-numero" data-target="8">0</span>
+                    <span class="stat-label">camere ristrutturate</span>
+                </div>
+            </div>
+
+            <div class="evidenza">
+                Un rifugio raggiungibile solo a piedi: arrivare al Salvin significa già iniziare l’esperienza,
+                passo dopo passo, lungo il sentiero.
+            </div>
+        </section>
+
+        <!-- PAESAGGI E NATURA ------------------------------------- -->
+        <section id="paesaggi" data-aos="fade-up">
+            <div class="pill"><span>🌄</span><span>Paesaggi naturali</span></div>
+            <h3>Marsaglia, lago di Monastero, Uja di Bellavarda</h3>
+            <p>
+                Attorno al rifugio si trovano luoghi di grande interesse naturalistico e culturale: antichi
+                santuari, laghi alpini, punti panoramici sulle valli di Lanzo e sulle montagne circostanti.
+                Qui sotto puoi esplorare alcune tappe significative del territorio.
+            </p>
+
+            <!-- TABS -->
+            <div class="tabs">
+                <div class="tabs-nav">
+                    <button type="button" class="tab-btn attiva" data-target="tab-marsaglia">Marsaglia</button>
+                    <button type="button" class="tab-btn" data-target="tab-lago">Lago di Monastero</button>
+                    <button type="button" class="tab-btn" data-target="tab-bellavarda">Uja di Bellavarda</button>
+                </div>
+
+                <div id="tab-marsaglia" class="tab-content attivo">
+                    <h4>Marsaglia – Santuario e borgo</h4>
+                    <p>
+                        <strong>Marsaglia</strong> è un antico santuario dedicato all’<strong>Assunzione di Maria Vergine</strong>.
+                        Attorno al santuario si trovano le caratteristiche casette in pietra, costruite per garantire
+                        isolamento termico e resistenza nel tempo.
+                    </p>
+                    <p>
+                        Marsaglia è una tappa importante lungo il percorso verso il rifugio e un luogo adatto per fare
+                        una pausa, osservare l’architettura tradizionale e, per i gruppi, consumare il pranzo al sacco.
+                    </p>
+                </div>
+
+                <div id="tab-lago" class="tab-content">
+                    <h4>Lago di Monastero</h4>
+                    <p>
+                        Il <strong>lago di Monastero</strong> si trova nelle valli di Lanzo, circa 200 metri a ovest del
+                        rifugio. Il percorso è percorribile sia a piedi sia in mountain bike e parte proprio dal
+                        <strong>Rifugio Salvin</strong>.
+                    </p>
+                    <p>
+                        Dal lago si possono intraprendere diversi itinerari:
+                    </p>
+                    <ul>
+                        <li>
+                            Tornare all’<strong>Alpe di Monastero</strong> attraverso un sentiero che conduce direttamente
+                            al rifugio (segnavia 407).
+                        </li>
+                        <li>
+                            Proseguire lungo la strada fino al <strong>Colle di Perascritta</strong> (2158 m), da cui
+                            si apre la vista sulla Val Locana e sul massiccio del Gran Paradiso.
+                        </li>
+                        <li>
+                            Dall’<strong>Alpe di Costapiana</strong> imboccare il sentiero 408A, che si ricongiunge con
+                            il sentiero proveniente dalla Vaccarezza e riporta in un paio d’ore al punto di partenza.
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="tab-bellavarda" class="tab-content">
+                    <h4>Uja di Bellavarda</h4>
+                    <p>
+                        Dalla zona del lago di Monastero, proseguendo verso l’<strong>Alpe di Monastero</strong>, si
+                        imbocca sulla sinistra una traccia che conduce all’<strong>Uja di Bellavarda</strong>, cima delle
+                        Alpi Graie posta a circa <strong>2345 m</strong> sul livello del mare.
+                    </p>
+                    <p>
+                        La salita richiede circa <strong>3 ore e mezza</strong> dal lago di Monastero e permette di
+                        raggiungere un punto panoramico di grande interesse, da cui si possono osservare in particolare
+                        i paesi di <strong>Chialamberto, Cantoira e Locana</strong>.
+                    </p>
+                </div>
+            </div>
+
+            <hr style="margin:22px 0;border:none;border-top:1px solid rgba(148,163,184,0.38);">
+
+            <h3>Gli alberi del bosco</h3>
+            <p>
+                Lungo i sentieri che portano al rifugio è possibile riconoscere diverse specie di alberi tipici della
+                zona. Cliccando sulle schede qui sotto è possibile leggere alcune curiosità naturalistiche e storiche.
+            </p>
+
+            <div class="alberi-grid">
+                <div class="albero" data-albero="nocciolo">
+                    <div class="albero-titolo">
+                        <span><strong>Nocciolo</strong></span>
+                        <span>＋</span>
+                    </div>
+                    <div class="albero-testo">
+                        <p>
+                            Le foglie del <strong>nocciolo</strong> sono tondeggianti con una piccola punta. In epoca
+                            medievale il nocciolo era simbolo di fertilità: romani e francesi donavano piante di
+                            nocciolo come augurio di fecondità e prosperità agli sposi.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="albero" data-albero="frassino">
+                    <div class="albero-titolo">
+                        <span><strong>Frassino</strong></span>
+                        <span>＋</span>
+                    </div>
+                    <div class="albero-testo">
+                        <p>
+                            Il <strong>frassino</strong> è riconoscibile perché le singole foglioline sono unite su
+                            un unico rametto. È importante anche in campo medico: da esso si estrae la
+                            <strong>manna</strong>, una linfa utilizzata come fluidificante e calmante.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="albero" data-albero="acero">
+                    <div class="albero-titolo">
+                        <span><strong>Acero</strong></span>
+                        <span>＋</span>
+                    </div>
+                    <div class="albero-testo">
+                        <p>
+                            Le foglie dell’<strong>acero</strong> hanno una forma che ricorda una stella. L’“acero da zucchero”
+                            è la fonte del noto <strong>sciroppo d’acero</strong>, prodotto con proprietà antiossidanti
+                            e utilizzato anche come supporto in caso di gastrite.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="albero" data-albero="castagno">
+                    <div class="albero-titolo">
+                        <span><strong>Castagno</strong></span>
+                        <span>＋</span>
+                    </div>
+                    <div class="albero-testo">
+                        <p>
+                            Le foglie del <strong>castagno</strong> sono allungate e presentano piccoli “spigoli” lungo
+                            i bordi. Il frutto, la castagna, è racchiuso nel caratteristico riccio. Il castagno è uno
+                            degli alberi più longevi: alcuni esemplari, come il celebre “Castagno dei Cento Cavalli”
+                            sull’Etna, hanno un’età stimata di oltre mille anni.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IL SENTIERO -------------------------------------------- -->
+        <section id="sentiero" data-aos="fade-up">
+            <div class="pill"><span>🥾</span><span>Il nostro percorso</span></div>
+            <h3>Il sentiero per il Rifugio Salvin</h3>
+            <p>
+                Per raggiungere il rifugio non si arriva in auto: il percorso prevede una parte in autobus o in macchina
+                e poi una camminata che diventa il vero inizio dell’esperienza. Di seguito le principali tappe.
+            </p>
+
+            <div class="steps">
+                <div class="step" data-numero="1">
+                    <strong>Punto di partenza – Località Mecca</strong>
+                    <p>
+                        Si raggiunge in <strong>autobus o in macchina</strong> la località <strong>Mecca</strong>,
+                        frazione di Monastero di Lanzo. Da qui hanno inizio le escursioni sul territorio circostante.
+                    </p>
+                </div>
+
+                <div class="step" data-numero="2">
+                    <strong>Verso Marsaglia</strong>
+                    <p>
+                        Da Mecca si percorre circa <strong>un’ora e quaranta minuti a piedi</strong> per arrivare a
+                        <strong>Marsaglia</strong>, posta a circa <strong>1330 m</strong> di quota. Qui si trova il
+                        santuario locale, dove è consigliato fermarsi per una pausa e consumare il proprio pranzo al sacco.
+                    </p>
+                </div>
+
+                <div class="step" data-numero="3">
+                    <strong>Ultimo tratto fino al rifugio</strong>
+                    <p>
+                        Dopo la sosta a Marsaglia si prosegue lungo il sentiero per altri <strong>quaranta minuti</strong>
+                        di camminata, fino a giungere al <strong>Rifugio Salvin</strong>, a circa <strong>1580 m</strong>
+                        sul livello del mare.
+                    </p>
+                    <p>
+                        All’arrivo, i gestori del rifugio accolgono il gruppo e mettono a disposizione i loro prodotti,
+                        frutto dell’impresa agricola che portano avanti in loco.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ESPERIENZA RAGAZZI ------------------------------------- -->
+        <section id="esperienza" data-aos="fade-up">
+            <div class="pill"><span>👣</span><span>Esperienza ragazzi</span></div>
+            <h3>Due giornate al Rifugio Salvin</h3>
+            <p>
+                Di seguito il racconto dell’esperienza vissuta dai ragazzi: dalla camminata di avvicinamento
+                all’accoglienza con tè e biscotti, dalla serata attorno al fuoco all’alba tra i monti, fino alle
+                attività pratiche con gli animali e i prodotti del rifugio.
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-card">
+                    <h4>Prima giornata – Arrivo, intervista e serata al falò</h4>
+                    <p>
+                        Dopo la lunga camminata, appena arrivati al rifugio i proprietari hanno accolto il gruppo con
+                        <strong>tè caldo e biscotti fatti in casa</strong>, per far riprendere tutti dalla fatica del sentiero.
+                    </p>
+                    <p>
+                        Dopo un momento di pausa, è stata organizzata un’<strong>intervista ai proprietari del rifugio</strong>:
+                        hanno raccontato come viene gestita la vita quotidiana al Salvin, quali sono i ritmi, i lavori
+                        da svolgere e cosa significa vivere stabilmente in montagna.
+                    </p>
+                    <p>
+                        Alla sera è stata servita la <strong>cena con piatti tipici del luogo</strong>. A sorpresa, le
+                        insegnanti hanno preparato un <strong>falò sotto le stelle</strong>, con marshmallow e musica di
+                        sottofondo. L’atmosfera creata dal fuoco in quel momento ha reso la fine della giornata speciale
+                        e indimenticabile.
+                    </p>
+                </div>
+
+                <div class="timeline-card">
+                    <h4>Seconda giornata – Alba tra i monti</h4>
+                    <p>
+                        La mattina seguente molti ragazzi si sono svegliati verso le <strong>7:30</strong> per osservare
+                        l’<strong>alba sorgere in mezzo ai monti</strong>. Faceva fresco, ma ne è valsa la pena:
+                        i colori del cielo sembravano quelli di un quadro.
+                    </p>
+                    <p>
+                        Questa esperienza ha reso evidente quanto la montagna cambi con la luce, con il silenzio
+                        e con i diversi momenti della giornata.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ATTIVITÀ ---------------------------------------------- -->
+        <section id="attivita" data-aos="fade-up">
+            <div class="pill"><span>🐐</span><span>Attività al rifugio</span></div>
+            <h3>Capre, formaggio e pane: imparare dalla vita quotidiana</h3>
+            <p>
+                Durante il soggiorno i ragazzi hanno potuto affiancare i gestori del rifugio in alcune attività
+                quotidiane, scoprendo in prima persona cosa significa lavorare con gli animali e con i prodotti
+                della montagna.
+            </p>
+
+            <div class="esperienze-grid">
+                <div class="esperienza">
+                    <strong>Mungere le capre</strong>
+                    <p>
+                        In mattinata, dopo la colazione, alcuni studenti hanno partecipato alla <strong>mungitura
+                        delle capre</strong>, guidati dai proprietari. È stato un momento concreto per capire da dove
+                        arriva il latte che usiamo ogni giorno.
+                    </p>
+                </div>
+                <div class="esperienza">
+                    <strong>Formaggio, tomini e ricotta</strong>
+                    <p>
+                        Subito dopo la mungitura, il gruppo ha potuto osservare come si <strong>produce il formaggio</strong>
+                        e ha partecipato alla preparazione di <strong>tomini e ricotta</strong>. Vedere il latte
+                        trasformarsi in formaggio ha reso visibile un processo che di solito si dà per scontato.
+                    </p>
+                </div>
+                <div class="esperienza">
+                    <strong>Impastare e modellare il pane</strong>
+                    <p>
+                        In seguito i ragazzi hanno creato diverse <strong>forme di pane</strong> – come trecce o cuori.
+                        Una volta lievitato e cotto, ciascuno ha potuto portare a casa il proprio pane, come ricordo
+                        personale dell’esperienza al rifugio.
+                    </p>
+                </div>
+            </div>
+
+            <div class="evidenza" style="margin-top:16px;">
+                Tutte queste attività – dal cammino al lavoro con le mani – trasformano il soggiorno al Salvin
+                in una vera <strong>esperienza educativa</strong> sul valore del cibo, del territorio e della cura
+                per l’ambiente.
+            </div>
+        </section>
+
+        <!-- RISTORANTE -------------------------------------------- -->
+        <section id="ristorante" data-aos="fade-up">
+            <div class="pill"><span>🍽️</span><span>Sapori</span></div>
+            <h3>Ristorante – Spese dai sapori al riposo</h3>
+            <div class="grid-2">
+                <div>
+                    <p>
+                        Con una capienza di circa <strong>60 posti</strong> e due accoglienti sale interne, il ristorante
+                        del Rifugio Salvin è perfetto per <strong>pranzi conviviali</strong>, tavolate e feste private.
+                    </p>
+                    <p>
+                        La cucina propone un <strong>menù fisso</strong> che valorizza i prodotti locali a km 0, con
+                        specialità della valle e ingredienti di produzione propria, come
+                        <strong>tomini con bagnetto verde, salumi e formaggi artigianali</strong>.
+                    </p>
+                    <p>
+                        Per le famiglie è previsto un <strong>menù bimbi</strong> a prezzo ridotto e, su richiesta,
+                        sono disponibili <strong>seggioloni</strong>. Nel rifugio vengono prodotti pane, burro e formaggi,
+                        che possono anche essere acquistati direttamente in loco.
+                    </p>
+                    <p>
+                        La <strong>cottura al forno a legna</strong> è uno dei punti di forza della cucina: perfetta
+                        per carni saporite come cinghiale, brasato e spezzatino, accompagnate dalla celebre
+                        <strong>polenta concia</strong> con toma d’alpeggio e burro artigianale.
+                    </p>
+                </div>
                 <div class="box">
-                    <h4>Affitto Baita Allen</h4>
-                    <ul class="prezzi-elenco">
-                        <li>€ 50,00 (2 persone)</li>
-                        <li>€ 60,00 (3 persone)</li>
-                        <li>€ 70,00 (4 persone)</li>
-                        <li><em>a notte · 2 settimane:</em> € 600</li>
-                        <li><em>1 mese:</em> € 1.000</li>
+                    <h4>Ricette di casa</h4>
+                    <p style="font-size:0.93rem;">
+                        Tra i piatti e i dolci più frequenti al rifugio si possono trovare, ad esempio:
+                    </p>
+                    <ul style="font-size:0.9rem; padding-left:18px;">
+                        <li>bagnetto verde;</li>
+                        <li>torta di mele;</li>
+                        <li>cookies e crostata del Salvin;</li>
+                        <li>cuore caldo al cioccolato;</li>
+                        <li>risotto ai funghi porcini;</li>
+                        <li>flan di spinacini e porri.</li>
                     </ul>
-                    <p style="font-size:0.9rem; margin-top:6px;">
-                        Anche per la Baita la prenotazione è obbligatoria e viene confermata al ricevimento della caparra.
+                </div>
+            </div>
+
+            <h4 style="margin-top:18px; color:#fde68a;">Menù pranzo (servizio alle 12:30)</h4>
+            <div class="cards-prezzi">
+                <div class="card-prezzo">
+                    <div class="tag-orario">Menù ridotto</div>
+                    <h4>Scelta tra primo o secondo</h4>
+                    <ul class="prezzi-elenco">
+                        <li>3 antipasti</li>
+                        <li>pasta <em>oppure</em> polenta con contorno</li>
+                        <li>formaggi della casa</li>
+                        <li>dolce</li>
+                        <li>acqua di sorgente, caffè e digestivo</li>
+                    </ul>
+                    <p style="margin-top:6px;">
+                        <strong>Adulti:</strong> € 25,00<br>
+                        <strong>Bambini (4–10 anni):</strong> € 12,00
+                    </p>
+                </div>
+
+                <div class="card-prezzo">
+                    <div class="tag-orario">Menù completo</div>
+                    <h4>Tutto il percorso</h4>
+                    <ul class="prezzi-elenco">
+                        <li>3 antipasti</li>
+                        <li>pasta</li>
+                        <li>polenta con contorno</li>
+                        <li>formaggi della casa</li>
+                        <li>dolce</li>
+                        <li>acqua di sorgente, caffè e digestivo</li>
+                    </ul>
+                    <p style="margin-top:6px;">
+                        <strong>Adulti:</strong> € 30,00<br>
+                        <strong>Bambini (4–10 anni):</strong> € 12,00
                     </p>
                 </div>
             </div>
+            <p style="font-size:0.88rem; margin-top:10px; color:var(--testo-soft);">
+                I prezzi comprendono acqua della sorgente, caffè e digestivo. Vini e altre bevande sono esclusi.
+            </p>
+
+            <h4 style="margin-top:18px; color:#fde68a;">Merende (dalle ore 16:00)</h4>
+            <div class="cards-prezzi">
+                <div class="card-prezzo">
+                    <div class="tag-orario">Merenda semplice</div>
+                    <ul class="prezzi-elenco">
+                        <li>salame, lardo, tomini, acciughe</li>
+                        <li>formaggi</li>
+                        <li>acqua di sorgente</li>
+                        <li>dolce, caffè e digestivo</li>
+                    </ul>
+                    <p style="margin-top:6px;">
+                        <strong>Adulti:</strong> € 18,00<br>
+                        <strong>Bambini (4–10 anni):</strong> € 12,00
+                    </p>
+                </div>
+
+                <div class="card-prezzo">
+                    <div class="tag-orario">Merenda “sinoira”</div>
+                    <ul class="prezzi-elenco">
+                        <li>salame, lardo, tomini, acciughe</li>
+                        <li>polenta e contorno</li>
+                        <li>formaggi</li>
+                        <li>acqua di sorgente</li>
+                        <li>dolce, caffè e digestivo</li>
+                    </ul>
+                    <p style="margin-top:6px;">
+                        <strong>Adulti:</strong> € 25,00<br>
+                        <strong>Bambini (4–10 anni):</strong> € 12,00
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ALLOGGI E BAITA --------------------------------------- -->
+        <section id="alloggi" data-aos="fade-up">
+            <div class="pill"><span>🛏️</span><span>Riposo</span></div>
+            <h3>Alloggi al rifugio e Baita Allen</h3>
+
+            <div class="grid-2">
+                <div>
+                    <h4>Camere del rifugio</h4>
+                    <p>
+                        Le <strong>8 camere</strong> del Rifugio Salvin, completamente ristrutturate e annesse
+                        all’edificio principale, offrono comfort e funzionalità grazie alla dotazione di
+                        <strong>biancheria e bagno privato</strong>.
+                    </p>
+                    <p>
+                        Le camere matrimoniali, con l’aggiunta di un letto a castello, sono perfette per ospitare
+                        famiglie o piccoli gruppi fino a <strong>4 persone</strong>.
+                    </p>
+                    <div class="box">
+                        <h4>Pensione completa – Camere</h4>
+                        <ul class="prezzi-elenco">
+                            <li><strong>Adulti:</strong> € 85,00</li>
+                            <li><strong>Bambini (4–10 anni):</strong> € 40,00</li>
+                            <li><strong>Bambini (0–4 anni):</strong> gratis</li>
+                        </ul>
+                        <p style="font-size:0.9rem; margin-top:6px; color:var(--testo-soft);">
+                            La prenotazione è obbligatoria e viene confermata via email al ricevimento della caparra.
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Baita Allen</h4>
+                    <p>
+                        La <strong>Baita Allen</strong> è una piccola casa in pietra situata a circa 50 metri dal rifugio,
+                        nel cuore delle Valli di Lanzo. Dispone di <strong>camera matrimoniale</strong>, bagno con piccola
+                        vasca, cucina e soggiorno con caminetto. Nel soggiorno possono essere aggiunti due letti singoli,
+                        per una capienza massima di <strong>4 persone</strong>.
+                    </p>
+                    <div class="box">
+                        <h4>Affitto Baita Allen</h4>
+                        <ul class="prezzi-elenco">
+                            <li>€ 50,00 (2 persone)</li>
+                            <li>€ 60,00 (3 persone)</li>
+                            <li>€ 70,00 (4 persone)</li>
+                            <li><em>a notte · 2 settimane:</em> € 600</li>
+                            <li><em>1 mese:</em> € 1.000</li>
+                        </ul>
+                        <p style="font-size:0.9rem; margin-top:6px; color:var(--testo-soft);">
+                            Anche per la Baita la prenotazione è obbligatoria e viene confermata al ricevimento della caparra.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERIA ---------------------------------------------- -->
+        <section id="galleria" data-aos="fade-up">
+            <div class="pill"><span>📸</span><span>Galleria</span></div>
+            <h3>Scorci dal Rifugio Salvin</h3>
+            <p>
+                Alcuni scorci rappresentativi del rifugio e dei suoi dintorni. In futuro puoi sostituire queste immagini
+                con foto reali del Salvin, del lago e dei sentieri.
+            </p>
+
+            <div class="gallery-grid">
+                <button class="gallery-item"
+                        data-img="https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg"
+                        data-caption="Vista serale dalle vicinanze del rifugio, tra luci di valle e profilo delle montagne.">
+                    <div class="gallery-bg"
+                         style="background-image:url('https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg');">
+                    </div>
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-label">Luci dei paesi sotto il rifugio</div>
+                </button>
+
+                <button class="gallery-item"
+                        data-img="https://images.pexels.com/photos/547115/pexels-photo-547115.jpeg"
+                        data-caption="L’atmosfera del bosco lungo il sentiero che conduce al rifugio.">
+                    <div class="gallery-bg"
+                         style="background-image:url('https://images.pexels.com/photos/547115/pexels-photo-547115.jpeg');">
+                    </div>
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-label">Bosco sul sentiero</div>
+                </button>
+
+                <button class="gallery-item"
+                        data-img="https://images.pexels.com/photos/2387418/pexels-photo-2387418.jpeg"
+                        data-caption="Alba tra i monti, colori che sembrano dipinti in cielo.">
+                    <div class="gallery-bg"
+                         style="background-image:url('https://images.pexels.com/photos/2387418/pexels-photo-2387418.jpeg');">
+                    </div>
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-label">Alba tra le montagne</div>
+                </button>
+            </div>
+        </section>
+
+        <!-- NOTE LEGALI ------------------------------------------- -->
+        <section id="notelegali" data-aos="fade-up">
+            <div class="pill"><span>⚖️</span><span>Trasparenza</span></div>
+            <h3>Note legali e privacy</h3>
+            <p style="font-size:0.93rem; color:var(--testo-soft);">
+                Questo sito ha carattere puramente informativo: non prevede moduli di contatto, aree riservate
+                o raccolta diretta di dati personali da parte dei visitatori.
+            </p>
+            <p style="font-size:0.93rem; color:var(--testo-soft);">
+                Non vengono utilizzati cookie di profilazione né strumenti di analisi statistica di terze parti.
+                Eventuali log tecnici generati dal provider che ospita le pagine (ad esempio indirizzo IP,
+                data e ora di accesso) sono trattati solo per garantire il corretto funzionamento e la sicurezza
+                dell’infrastruttura.
+            </p>
+            <p style="font-size:0.9rem; color:var(--testo-soft);">
+                Per ogni informazione relativa alla gestione delle attività con i gruppi, alla sicurezza sui sentieri
+                e alla responsabilità delle iniziative, si fa riferimento alla documentazione ufficiale fornita
+                dall’associazione e agli accordi con le scuole coinvolte.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <div>
+            &copy; <span id="anno"></span> Rifugio Salvin – Monastero di Lanzo. Tutti i diritti riservati.
         </div>
-    </section>
-
-    <!-- GALLERIA FOTOGRAFICA -->
-    <section id="galleria" data-aos="fade-up">
-        <div class="pill">Galleria</div>
-        <h3>Scorci dal Rifugio Salvin</h3>
-        <p>
-            Alcuni scorci rappresentativi del rifugio e dei suoi dintorni. In futuro puoi sostituire queste immagini
-            con foto reali del Salvin, del lago e dei sentieri.
-        </p>
-
-        <div class="gallery-grid">
-            <button class="gallery-item"
-                    data-img="https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg"
-                    data-caption="Vista serale dalle vicinanze del rifugio, tra luci di valle e profilo delle montagne.">
-                <div class="gallery-bg"
-                     style="background-image:url('https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg');">
-                </div>
-                <div class="gallery-overlay"></div>
-                <div class="gallery-label">Luci dei paesi sotto il rifugio</div>
-            </button>
-
-            <button class="gallery-item"
-                    data-img="https://images.pexels.com/photos/547115/pexels-photo-547115.jpeg"
-                    data-caption="L’atmosfera del bosco lungo il sentiero che conduce al rifugio.">
-                <div class="gallery-bg"
-                     style="background-image:url('https://images.pexels.com/photos/547115/pexels-photo-547115.jpeg');">
-                </div>
-                <div class="gallery-overlay"></div>
-                <div class="gallery-label">Bosco sul sentiero</div>
-            </button>
-
-            <button class="gallery-item"
-                    data-img="https://images.pexels.com/photos/2387418/pexels-photo-2387418.jpeg"
-                    data-caption="Alba tra i monti, colori che sembrano dipinti in cielo.">
-                <div class="gallery-bg"
-                     style="background-image:url('https://images.pexels.com/photos/2387418/pexels-photo-2387418.jpeg');">
-                </div>
-                <div class="gallery-overlay"></div>
-                <div class="gallery-label">Alba tra le montagne</div>
-            </button>
-        </div>
-    </section>
-
-    <!-- NOTE LEGALI -->
-    <section id="notelegali" data-aos="fade-up">
-        <div class="pill">Trasparenza</div>
-        <h3>Note legali e privacy</h3>
-        <p style="font-size:0.93rem;">
-            Questo sito ha carattere puramente informativo: non prevede moduli di contatto, aree riservate
-            o raccolta diretta di dati personali da parte dei visitatori.
-        </p>
-        <p style="font-size:0.93rem;">
-            Non vengono utilizzati cookie di profilazione né strumenti di analisi statistica di terze parti.
-            Eventuali log tecnici generati dal provider che ospita le pagine (ad esempio indirizzo IP,
-            data e ora di accesso) sono trattati solo per garantire il corretto funzionamento e la sicurezza
-            dell’infrastruttura.
-        </p>
-        <p style="font-size:0.9rem;">
-            Per ogni informazione relativa alla gestione delle attività con i gruppi, alla sicurezza sui sentieri
-            e alla responsabilità delle iniziative, si fa riferimento alla documentazione ufficiale fornita
-            dall’associazione e agli accordi con le scuole coinvolte.
-        </p>
-    </section>
-</main>
-
-<footer>
-    <div>
-        &copy; <span id="anno"></span> Rifugio Salvin – Monastero di Lanzo. Tutti i diritti riservati.
-    </div>
-</footer>
+    </footer>
+</div>
 
 <!-- Libreria AOS e JavaScript personalizzato -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -1262,7 +1458,7 @@
         });
     });
 
-    // contatori numerici (quota, coperti, camere)
+    // contatori numerici
     const stats = document.querySelectorAll('.stat-numero');
     const statsObserver = new IntersectionObserver(
         (entries, obs) => {

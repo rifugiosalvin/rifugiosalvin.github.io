@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Rifugio Salvin – Monastero di Lanzo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Rifugio Salvin a Monastero di Lanzo: esperienze nella natura, percorsi a piedi, attività con i ragazzi, paesaggi e sentieri della Valle di Lanzo.">
+    <meta name="description" content="Rifugio Salvin a Monastero di Lanzo: esperienze nella natura, sentieri, lago di Monastero, Uja di Bellavarda, ristorante, camere, baita e attività con i ragazzi.">
 
     <style>
         :root {
@@ -100,6 +100,14 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.12em;
+        }
+
+        .sottotitolo-hero {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            margin-top: 6px;
+            opacity: 0.9;
         }
 
         /* NAV ------------------------------------------------------ */
@@ -266,11 +274,182 @@
             color: #8a6714;
         }
 
-        /* INFO & FOOTER -------------------------------------------- */
+        /* TABS PAESAGGI -------------------------------------------- */
 
-        .sentieri-list li {
+        .tabs {
+            margin-top: 14px;
+        }
+
+        .tabs-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .tabs-nav button {
+            border: 1px solid #d3d7e0;
+            background: #f3f4f8;
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 0.88rem;
+            cursor: pointer;
+            color: #303548;
+        }
+
+        .tabs-nav button.attiva {
+            background: var(--blu-scuro);
+            color: white;
+            border-color: var(--blu-scuro);
+        }
+
+        .tab-content {
+            display: none;
+            background: #f9fafb;
+            border-radius: 10px;
+            border: 1px solid #dde2ee;
+            padding: 14px;
+            font-size: 0.95rem;
+        }
+
+        .tab-content.attivo {
+            display: block;
+        }
+
+        .tab-content h4 {
+            margin-top: 0;
+            color: var(--blu-scuro);
+        }
+
+        /* ALBERI INTERATTIVI --------------------------------------- */
+
+        .alberi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 14px;
+            margin-top: 12px;
+        }
+
+        .albero {
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 1px solid #dde3ef;
+            padding: 10px 12px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .albero:hover {
+            background: #eef3fb;
+            transform: translateY(-2px);
+        }
+
+        .albero-titolo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+            color: #1e293b;
+        }
+
+        .albero-titolo span:last-child {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        .albero-testo {
+            margin-top: 6px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .albero.aperto .albero-testo {
+            display: block;
+        }
+
+        /* SENTIERO STEPS ------------------------------------------- */
+
+        .steps {
+            display: grid;
+            gap: 14px;
+            margin-top: 10px;
+        }
+
+        .step {
+            position: relative;
+            padding: 12px 12px 10px 26px;
+            border-radius: 10px;
+            background: #f8fafc;
+            border: 1px solid #dde2ee;
+        }
+
+        .step::before {
+            content: attr(data-numero);
+            position: absolute;
+            left: 8px;
+            top: 10px;
+            font-size: 0.78rem;
+            background: var(--blu-chiaro);
+            color: white;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--blu-scuro);
+        }
+
+        /* CARDS RISTORANTE / PREZZI -------------------------------- */
+
+        .cards-prezzi {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .card-prezzo {
+            background: #fcfbf7;
+            border-radius: 10px;
+            border: 1px solid #eee2c2;
+            padding: 14px;
+            font-size: 0.93rem;
+        }
+
+        .card-prezzo h4 {
+            margin: 0 0 6px;
+            color: #7a5a10;
+            font-size: 1rem;
+        }
+
+        .tag-orario {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: #f3e0b8;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
             margin-bottom: 6px;
         }
+
+        .prezzi-elenco {
+            list-style: none;
+            padding-left: 0;
+            margin: 6px 0 0;
+        }
+
+        .prezzi-elenco li {
+            margin-bottom: 3px;
+        }
+
+        /* INFO & FOOTER -------------------------------------------- */
 
         footer {
             border-top: 1px solid #dcdce3;
@@ -312,16 +491,20 @@
     <div class="contenuto-hero">
         <div class="badge-hero">
             <span>⛰️</span>
-            <span>Monastero di Lanzo · Valle di Lanzo (TO)</span>
+            <span>Monastero di Lanzo · Valli di Lanzo (TO)</span>
         </div>
         <h1>Rifugio Salvin</h1>
-        <h2>Natura, sentieri ed esperienze per i ragazzi</h2>
+        <h2>Una meraviglia naturale tra sentieri, boschi e montagne</h2>
         <p>
-            Un rifugio raggiungibile solo a piedi, immerso nei boschi: qui il cammino, il silenzio
-            e i paesaggi diventano un laboratorio a cielo aperto per scuole, gruppi e famiglie.
+            Un rifugio raggiungibile solo a piedi, a circa 1580 metri di quota: qui il trekking,
+            i paesaggi naturali e le esperienze con i ragazzi diventano un percorso educativo
+            a cielo aperto.
         </p>
-        <div style="margin-top:16px;">
-            <span class="pill-hero">Esperienze, percorsi, paesaggi naturali</span>
+        <div class="sottotitolo-hero">
+            Spese dai sapori al riposo
+        </div>
+        <div style="margin-top:14px;">
+            <span class="pill-hero">Esperienze in luogo · Paesaggi naturali · Il nostro percorso</span>
         </div>
     </div>
 </header>
@@ -329,10 +512,12 @@
 <nav>
     <div class="nav-inner">
         <a href="#rifugio">Il rifugio</a>
-        <a href="#paesaggi">Paesaggi e sentieri</a>
+        <a href="#paesaggi">Paesaggi e natura</a>
+        <a href="#sentiero">Il sentiero</a>
         <a href="#esperienza">La nostra esperienza</a>
         <a href="#attivita">Attività con i ragazzi</a>
-        <a href="#info">Informazioni pratiche</a>
+        <a href="#ristorante">Ristorante</a>
+        <a href="#alloggi">Alloggi e baita</a>
         <a href="#notelegali">Note legali</a>
     </div>
 </nav>
@@ -341,53 +526,216 @@
     <!-- IL RIFUGIO -->
     <section id="rifugio">
         <div class="pill">Il luogo</div>
-        <h3>Il Rifugio Salvin</h3>
+        <h3>Il Rifugio Salvin – Una meraviglia naturale</h3>
         <div class="grid-2">
             <div>
                 <p>
-                    Il <strong>Rifugio Salvin</strong> è una casa di montagna semplice e autentica, immersa
-                    nei boschi sopra Monastero di Lanzo. Si raggiunge soltanto a piedi: questo rende
-                    l’arrivo ancora più significativo, soprattutto per i ragazzi, che vivono il cammino
-                    come parte integrante dell’esperienza.
+                    Il <strong>Rifugio Salvin</strong> è stato pensato per chi ama il trekking e per chi desidera
+                    mettersi davvero a contatto con la natura. È immerso nel territorio del comune di
+                    <strong>Monastero di Lanzo</strong>, a circa <strong>1580 metri di altezza</strong>, e offre servizi
+                    di pernottamento e ristorazione in un contesto semplice, autentico e lontano dal turismo di massa.
                 </p>
                 <p>
-                    Non è un grande albergo, ma un luogo di accoglienza curato dai proprietari
-                    con attenzione e cura. Gli spazi interni ed esterni sono perfetti per attività
-                    con le classi: momenti di gruppo, laboratori, giochi all’aperto e tempo libero
-                    nella natura.
+                    Il rifugio è circondato da boschi, sentieri e panorami aperti sulla valle: un luogo ideale
+                    per famiglie, gruppi e soprattutto per esperienze scolastiche, in cui i ragazzi possono
+                    vivere la montagna non solo come “gita”, ma come occasione per osservare, capire e sperimentare.
                 </p>
             </div>
             <div class="box">
-                <h4>Cosa si trova al Salvin</h4>
+                <h4>Vista dal rifugio</h4>
+                <p>
+                    All’esterno della sala da pranzo si trova un piazzale con panchine da cui è possibile
+                    ammirare un <strong>paesaggio meraviglioso</strong>: montagne, boschi e, nelle giornate limpide,
+                    le <strong>luci dei paesi sottostanti</strong> che si accendono una dopo l’altra, soprattutto quando
+                    la nebbia risale dalla valle e avvolge il paesaggio.
+                </p>
+            </div>
+        </div>
+        <div class="evidenza">
+            Un rifugio raggiungibile solo a piedi: arrivare al Salvin significa già iniziare l’esperienza,
+            passo dopo passo, lungo il sentiero.
+        </div>
+    </section>
+
+    <!-- PAESAGGI E NATURA: MARSAGLIA, LAGO, UJA + ALBERI -->
+    <section id="paesaggi">
+        <div class="pill">Paesaggi naturali</div>
+        <h3>Marsaglia, lago di Monastero, Uja di Bellavarda</h3>
+        <p>
+            Attorno al rifugio si trovano luoghi di grande interesse naturalistico e culturale: antichi
+            santuari, laghi alpini, punti panoramici sulle valli di Lanzo e sulle montagne circostanti.
+            Qui sotto puoi esplorare alcune tappe significative del territorio.
+        </p>
+
+        <!-- TABS INTERATTIVI -->
+        <div class="tabs">
+            <div class="tabs-nav">
+                <button type="button" class="tab-btn attiva" data-target="tab-marsaglia">Marsaglia</button>
+                <button type="button" class="tab-btn" data-target="tab-lago">Lago di Monastero</button>
+                <button type="button" class="tab-btn" data-target="tab-bellavarda">Uja di Bellavarda</button>
+            </div>
+
+            <div id="tab-marsaglia" class="tab-content attivo">
+                <h4>Marsaglia – Santuario e borgo</h4>
+                <p>
+                    <strong>Marsaglia</strong> è un antico santuario dedicato all’<strong>Assunzione di Maria Vergine</strong>.
+                    Attorno al santuario si trovano le caratteristiche casette in pietra, costruite per garantire
+                    isolamento termico e resistenza nel tempo.
+                </p>
+                <p>
+                    Marsaglia è una tappa importante lungo il percorso verso il rifugio e un luogo adatto per fare
+                    una pausa, osservare l’architettura tradizionale e, per i gruppi, consumare il pranzo al sacco.
+                </p>
+            </div>
+
+            <div id="tab-lago" class="tab-content">
+                <h4>Lago di Monastero</h4>
+                <p>
+                    Il <strong>lago di Monastero</strong> si trova nelle valli di Lanzo, circa 200 metri a ovest del
+                    rifugio. Il percorso è percorribile sia a piedi sia in mountain bike e parte proprio dal
+                    <strong>Rifugio Salvin</strong>.
+                </p>
+                <p>
+                    Dal lago si possono intraprendere diversi itinerari:
+                </p>
                 <ul>
-                    <li>Ambiente familiare, lontano dal turismo di massa.</li>
-                    <li>Spazi comuni per attività con i ragazzi.</li>
-                    <li>Silenzio, boschi e panorami aperti sulla valle.</li>
-                    <li>Accesso solo a piedi lungo sentieri segnati.</li>
+                    <li>
+                        Tornare all’<strong>Alpe di Monastero</strong> attraverso un sentiero che conduce direttamente
+                        al rifugio (segnavia 407).
+                    </li>
+                    <li>
+                        Proseguire lungo la strada fino al <strong>Colle di Perascritta</strong> (2158 m), da cui
+                        si apre la vista sulla Val Locana e sul massiccio del Gran Paradiso.
+                    </li>
+                    <li>
+                        Dall’<strong>Alpe di Costapiana</strong> imboccare il sentiero 408A, che si ricongiunge con
+                        il sentiero proveniente dalla Vaccarezza e riporta in un paio d’ore al punto di partenza.
+                    </li>
                 </ul>
+            </div>
+
+            <div id="tab-bellavarda" class="tab-content">
+                <h4>Uja di Bellavarda</h4>
+                <p>
+                    Dalla zona del lago di Monastero, proseguendo verso l’<strong>Alpe di Monastero</strong>, si
+                    imbocca sulla sinistra una traccia che conduce all’<strong>Uja di Bellavarda</strong>, cima delle
+                    Alpi Graie posta a circa <strong>2345 m</strong> sul livello del mare.
+                </p>
+                <p>
+                    La salita richiede circa <strong>3 ore e mezza</strong> dal lago di Monastero e permette di
+                    raggiungere un punto panoramico di grande interesse, da cui si possono osservare in particolare
+                    i paesi di <strong>Chialamberto, Cantoira e Locana</strong>.
+                </p>
+            </div>
+        </div>
+
+        <hr style="margin:22px 0;border:none;border-top:1px solid #e2e5ee;">
+
+        <h3>Gli alberi del bosco</h3>
+        <p>
+            Lungo i sentieri che portano al rifugio è possibile riconoscere diverse specie di alberi tipici della
+            zona. Cliccando sulle schede qui sotto è possibile leggere alcune curiosità naturalistiche e storiche.
+        </p>
+
+        <div class="alberi-grid">
+            <div class="albero" data-albero="nocciolo">
+                <div class="albero-titolo">
+                    <span><strong>Nocciolo</strong></span>
+                    <span>＋</span>
+                </div>
+                <div class="albero-testo">
+                    <p>
+                        Le foglie del <strong>nocciolo</strong> sono tondeggianti con una piccola punta. In epoca
+                        medievale il nocciolo era simbolo di fertilità: romani e francesi donavano piante di
+                        nocciolo come augurio di fecondità e prosperità agli sposi.
+                    </p>
+                </div>
+            </div>
+
+            <div class="albero" data-albero="frassino">
+                <div class="albero-titolo">
+                    <span><strong>Frassino</strong></span>
+                    <span>＋</span>
+                </div>
+                <div class="albero-testo">
+                    <p>
+                        Il <strong>frassino</strong> è riconoscibile perché le singole foglioline sono unite su
+                        un unico rametto. È importante anche in campo medico: da esso si estrae la
+                        <strong>manna</strong>, una linfa utilizzata come fluidificante e calmante.
+                    </p>
+                </div>
+            </div>
+
+            <div class="albero" data-albero="acero">
+                <div class="albero-titolo">
+                    <span><strong>Acero</strong></span>
+                    <span>＋</span>
+                </div>
+                <div class="albero-testo">
+                    <p>
+                        Le foglie dell’<strong>acero</strong> hanno una forma che ricorda una stella. L’“acero da zucchero”
+                        è la fonte del noto <strong>sciroppo d’acero</strong>, prodotto con proprietà antiossidanti
+                        e utilizzato anche come supporto in caso di gastrite.
+                    </p>
+                </div>
+            </div>
+
+            <div class="albero" data-albero="castagno">
+                <div class="albero-titolo">
+                    <span><strong>Castagno</strong></span>
+                    <span>＋</span>
+                </div>
+                <div class="albero-testo">
+                    <p>
+                        Le foglie del <strong>castagno</strong> sono allungate e presentano piccoli “spigoli” lungo
+                        i bordi. Il frutto, la castagna, è racchiuso nel caratteristico riccio. Il castagno è uno
+                        degli alberi più longevi: alcuni esemplari, come il celebre “Castagno dei Cento Cavalli”
+                        sull’Etna, hanno un’età stimata di oltre mille anni.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- PAESAGGI E SENTIERI -->
-    <section id="paesaggi">
-        <div class="pill">Paesaggi naturali</div>
-        <h3>Sentieri, percorsi e panorami</h3>
+    <!-- IL SENTIERO -->
+    <section id="sentiero">
+        <div class="pill">Il nostro percorso</div>
+        <h3>Il sentiero per il Rifugio Salvin</h3>
         <p>
-            Il Salvin è circondato da boschi, prati e punti panoramici che permettono di osservare
-            dall’alto la Valle di Lanzo. I sentieri che portano al rifugio sono percorribili
-            con gruppi di ragazzi e possono essere adattati alle esigenze del gruppo classe.
+            Per raggiungere il rifugio non si arriva in auto: il percorso prevede una parte in autobus o in macchina
+            e poi una camminata che diventa il vero inizio dell’esperienza. Di seguito le principali tappe.
         </p>
 
-        <ul class="sentieri-list">
-            <li><strong>Itinerario di accesso da Monastero di Lanzo</strong> – il percorso più utilizzato per raggiungere il rifugio, con tratti nel bosco e scorci sulla valle.</li>
-            <li><strong>Piccoli anelli attorno al rifugio</strong> – ideali per brevi passeggiate, giochi di orientamento e osservazione dell’ambiente.</li>
-            <li><strong>Varianti più impegnative</strong> – per gruppi abituati a camminare, con dislivello maggiore e panorami più ampi.</li>
-        </ul>
+        <div class="steps">
+            <div class="step" data-numero="1">
+                <strong>Punto di partenza – Località Mecca</strong>
+                <p>
+                    Si raggiunge in <strong>autobus o in macchina</strong> la località <strong>Mecca</strong>,
+                    frazione di Monastero di Lanzo. Da qui hanno inizio le escursioni sul territorio circostante.
+                </p>
+            </div>
 
-        <div class="evidenza">
-            I <strong>paesaggi naturali</strong> e i sentieri sono parte centrale dell’esperienza:
-            non solo luogo di passaggio, ma aula all’aperto dove imparare a leggere il territorio.
+            <div class="step" data-numero="2">
+                <strong>Verso Marsaglia</strong>
+                <p>
+                    Da Mecca si percorre circa <strong>un’ora e quaranta minuti a piedi</strong> per arrivare a
+                    <strong>Marsaglia</strong>, posta a circa <strong>1330 m</strong> di quota. Qui si trova il
+                    santuario locale, dove è consigliato fermarsi per una pausa e consumare il proprio pranzo al sacco.
+                </p>
+            </div>
+
+            <div class="step" data-numero="3">
+                <strong>Ultimo tratto fino al rifugio</strong>
+                <p>
+                    Dopo la sosta a Marsaglia si prosegue lungo il sentiero per altri <strong>quaranta minuti</strong>
+                    di camminata, fino a giungere al <strong>Rifugio Salvin</strong>, a circa <strong>1580 m</strong>
+                    sul livello del mare.
+                </p>
+                <p>
+                    All’arrivo, i gestori del rifugio accolgono il gruppo e mettono a disposizione i loro prodotti,
+                    frutto dell’impresa agricola che portano avanti in loco.
+                </p>
+            </div>
         </div>
     </section>
 
@@ -396,43 +744,41 @@
         <div class="pill">La nostra esperienza</div>
         <h3>Due giornate al Rifugio Salvin</h3>
         <p>
-            Di seguito il racconto dell’esperienza vissuta dai ragazzi: una camminata impegnativa,
-            l’accoglienza al rifugio, la serata attorno al fuoco, l’alba tra i monti e le attività
-            quotidiane con gli animali e la produzione dei prodotti locali.
+            Di seguito il racconto dell’esperienza vissuta dai ragazzi: dalla camminata di avvicinamento
+            all’accoglienza con tè e biscotti, dalla serata attorno al fuoco all’alba tra i monti, fino alle
+            attività pratiche con gli animali e i prodotti del rifugio.
         </p>
 
         <div class="timeline">
             <div class="timeline-card">
-                <h4>Prima giornata – L’arrivo e la serata al rifugio</h4>
+                <h4>Prima giornata – Arrivo, intervista e serata al falò</h4>
                 <p>
-                    Dopo la salita lungo il sentiero e la fatica della camminata, l’arrivo al Salvin è
-                    stato segnato da un momento di vera accoglienza: i proprietari hanno offerto
-                    <strong>tè caldo e biscotti fatti in casa</strong>, per permettere a tutti di riprendersi
-                    e godersi la tranquillità del luogo.
+                    Dopo la lunga camminata, appena arrivati al rifugio i proprietari hanno accolto il gruppo con
+                    <strong>tè caldo e biscotti fatti in casa</strong>, per far riprendere tutti dalla fatica del sentiero.
                 </p>
                 <p>
-                    In seguito è stato possibile realizzare una <strong>intervista ai gestori del rifugio</strong>,
-                    che hanno raccontato come organizzano la loro vita quotidiana in montagna e la gestione
-                    della struttura: tempi, scelte, difficoltà e soddisfazioni.
+                    Dopo un momento di pausa, è stata organizzata un’<strong>intervista ai proprietari del rifugio</strong>:
+                    hanno raccontato come viene gestita la vita quotidiana al Salvin, quali sono i ritmi, i lavori
+                    da svolgere e cosa significa vivere stabilmente in montagna.
                 </p>
                 <p>
-                    Con l’arrivo della sera è stata servita la <strong>cena con piatti tipici del territorio</strong>.
-                    Dopo cena le insegnanti hanno preparato una sorpresa: un <strong>falò sotto le stelle</strong>,
-                    con marshmallow e musica di sottofondo. L’atmosfera creata dal fuoco, dal cielo scuro
-                    e dal gruppo riunito ha chiuso la giornata in modo speciale e indimenticabile.
+                    Alla sera è stata servita la <strong>cena con piatti tipici del luogo</strong>. A sorpresa, le
+                    insegnanti hanno preparato un <strong>falò sotto le stelle</strong>, con marshmallow e musica di
+                    sottofondo. L’atmosfera creata dal fuoco in quel momento ha reso la fine della giornata speciale
+                    e indimenticabile.
                 </p>
             </div>
 
             <div class="timeline-card">
-                <h4>Seconda giornata – Alba, montagna e silenzio</h4>
+                <h4>Seconda giornata – Alba tra i monti</h4>
                 <p>
-                    La mattina successiva molti ragazzi si sono svegliati verso le <strong>7:30 per vedere l’alba</strong>
-                    sorgere tra i monti. Faceva fresco, ma ne è davvero valsa la pena: i colori del cielo
-                    sembravano quelli di un quadro e il paesaggio era completamente diverso rispetto alla sera precedente.
+                    La mattina seguente molti ragazzi si sono svegliati verso le <strong>7:30</strong> per osservare
+                    l’<strong>alba sorgere in mezzo ai monti</strong>. Faceva fresco, ma ne è valsa la pena:
+                    i colori del cielo sembravano quelli di un quadro.
                 </p>
                 <p>
-                    Questo momento ha permesso di vivere la montagna in modo più lento, osservando il cambiamento
-                    della luce, dei suoni e dell’aria, lontani dalle abitudini di tutti i giorni.
+                    Questa esperienza ha reso evidente quanto la montagna cambi con la luce, con il silenzio
+                    e con i diversi momenti della giornata.
                 </p>
             </div>
         </div>
@@ -443,58 +789,212 @@
         <div class="pill">Attività con i ragazzi</div>
         <h3>Capre, formaggio e pane: imparare dalla vita quotidiana</h3>
         <p>
-            Durante la permanenza al Salvin i ragazzi non sono stati solo “ospiti”, ma hanno potuto
-            sperimentare alcune delle attività quotidiane che scandiscono la vita al rifugio.
+            Durante il soggiorno i ragazzi hanno potuto affiancare i gestori del rifugio in alcune attività
+            quotidiane, scoprendo in prima persona cosa significa lavorare con gli animali e con i prodotti
+            della montagna.
         </p>
 
         <div class="esperienze-grid">
             <div class="esperienza">
                 <strong>🐐 Mungere le capre</strong>
-                Alcuni studenti hanno partecipato alla <strong>mungitura delle capre</strong>, guidati dai proprietari.
-                Un gesto semplice ma molto concreto, che fa capire da dove arrivano il latte e i prodotti che
-                consumiamo ogni giorno.
+                <p>
+                    In mattinata, dopo la colazione, alcuni studenti hanno partecipato alla <strong>mungitura
+                    delle capre</strong>, guidati dai proprietari. È stato un momento concreto per capire da dove
+                    arriva il latte che usiamo ogni giorno.
+                </p>
             </div>
             <div class="esperienza">
-                <strong>🧀 Fare formaggio, tomini e ricotta</strong>
-                Dopo la mungitura, il gruppo ha potuto osservare come si <strong>trasforma il latte</strong> e
-                partecipare alla preparazione di <strong>formaggio, tomini e ricotta</strong>. Vedere nascere
-                questi prodotti dal vivo aiuta a collegare teoria e pratica.
+                <strong>🧀 Formaggio, tomini e ricotta</strong>
+                <p>
+                    Subito dopo la mungitura, il gruppo ha potuto osservare come si <strong>produce il formaggio</strong>
+                    e ha partecipato alla preparazione di <strong>tomini e ricotta</strong>. Vedere il latte
+                    trasformarsi in formaggio ha reso visibile un processo che di solito si dà per scontato.
+                </p>
             </div>
             <div class="esperienza">
                 <strong>🍞 Impastare e modellare il pane</strong>
-                In un secondo momento i ragazzi hanno creato diverse <strong>forme di pane</strong> – trecce, cuori
-                e altre fantasie. Una volta lievitato e cotto, ognuno ha potuto portare a casa il proprio pane,
-                come ricordo tangibile dell’esperienza al rifugio.
+                <p>
+                    In seguito i ragazzi hanno creato diverse <strong>forme di pane</strong> – come trecce o cuori.
+                    Una volta lievitato e cotto, ciascuno ha potuto portare a casa il proprio pane, come ricordo
+                    personale dell’esperienza al rifugio.
+                </p>
             </div>
         </div>
 
         <div class="evidenza" style="margin-top:16px;">
-            Tutte queste attività – dal cammino al lavoro con gli animali e con le mani – trasformano la gita
-            in una vera <strong>esperienza educativa</strong> sul valore del cibo, del territorio e del prendersi cura
-            delle cose.
+            Tutte queste attività – dal cammino al lavoro con le mani – trasformano il soggiorno al Salvin
+            in una vera <strong>esperienza educativa</strong> sul valore del cibo, del territorio e della cura
+            per l’ambiente.
         </div>
     </section>
 
-    <!-- INFO PRATICHE -->
-    <section id="info">
-        <div class="pill">Informazioni pratiche</div>
-        <h3>Dove si trova e come organizzare le attività</h3>
-        <div class="box">
-            <h4>Posizione</h4>
-            <p>
-                <strong>Rifugio Salvin – Monastero di Lanzo (TO)</strong><br>
-                Raggiungibile solo a piedi lungo i sentieri che partono da Monastero di Lanzo e dai dintorni.
-            </p>
+    <!-- RISTORANTE -->
+    <section id="ristorante">
+        <div class="pill">Sapori</div>
+        <h3>Ristorante – Spese dai sapori al riposo</h3>
+        <div class="grid-2">
+            <div>
+                <p>
+                    Con una capienza di circa <strong>60 posti</strong> e due accoglienti sale interne, il ristorante
+                    del Rifugio Salvin è perfetto per <strong>pranzi conviviali</strong>, tavolate e feste private.
+                </p>
+                <p>
+                    La cucina propone un <strong>menù fisso</strong> che valorizza i prodotti locali a km 0, con
+                    specialità della valle e ingredienti di produzione propria, come
+                    <strong>tomini con bagnetto verde, salumi e formaggi artigianali</strong>.
+                </p>
+                <p>
+                    Per le famiglie è previsto un <strong>menù bimbi</strong> a prezzo ridotto e, su richiesta,
+                    sono disponibili <strong>seggioloni</strong>. Nel rifugio vengono prodotti pane, burro e formaggi,
+                    che possono anche essere acquistati direttamente in loco.
+                </p>
+                <p>
+                    La <strong>cottura al forno a legna</strong> è uno dei punti di forza della cucina: perfetta
+                    per carni saporite come cinghiale, brasato e spezzatino, accompagnate dalla celebre
+                    <strong>polenta concia</strong> con toma d’alpeggio e burro artigianale.
+                </p>
+            </div>
+            <div class="box">
+                <h4>Ricette di casa</h4>
+                <p style="font-size:0.93rem;">
+                    Tra i piatti e i dolci più frequenti al rifugio si possono trovare, ad esempio:
+                </p>
+                <ul style="font-size:0.9rem; padding-left:18px;">
+                    <li>bagnetto verde;</li>
+                    <li>torta di mele;</li>
+                    <li>cookies e crostata del Salvin;</li>
+                    <li>cuore caldo al cioccolato;</li>
+                    <li>risotto ai funghi porcini;</li>
+                    <li>flan di spinacini e porri.</li>
+                </ul>
+            </div>
         </div>
-        <p style="margin-top:14px; font-size:0.95rem;">
-            Per informazioni aggiornate su <strong>aperture, costi del rifugio, organizzazione dei percorsi
-            e attività con le scuole</strong> è possibile contattare direttamente i referenti del rifugio
-            o dell’associazione che gestisce le iniziative.
+
+        <h4 style="margin-top:18px; color:#7a5a10;">Menù pranzo (servizio alle 12:30)</h4>
+        <div class="cards-prezzi">
+            <div class="card-prezzo">
+                <div class="tag-orario">Menù ridotto</div>
+                <h4>Scelta tra primo o secondo</h4>
+                <ul class="prezzi-elenco">
+                    <li>3 antipasti</li>
+                    <li>pasta <em>oppure</em> polenta con contorno</li>
+                    <li>formaggi della casa</li>
+                    <li>dolce</li>
+                    <li>acqua di sorgente, caffè e digestivo</li>
+                </ul>
+                <p style="margin-top:6px;">
+                    <strong>Adulti:</strong> € 25,00<br>
+                    <strong>Bambini (4–10 anni):</strong> € 12,00
+                </p>
+            </div>
+
+            <div class="card-prezzo">
+                <div class="tag-orario">Menù completo</div>
+                <h4>Tutto il percorso</h4>
+                <ul class="prezzi-elenco">
+                    <li>3 antipasti</li>
+                    <li>pasta</li>
+                    <li>polenta con contorno</li>
+                    <li>formaggi della casa</li>
+                    <li>dolce</li>
+                    <li>acqua di sorgente, caffè e digestivo</li>
+                </ul>
+                <p style="margin-top:6px;">
+                    <strong>Adulti:</strong> € 30,00<br>
+                    <strong>Bambini (4–10 anni):</strong> € 12,00
+                </p>
+            </div>
+        </div>
+        <p style="font-size:0.88rem; margin-top:10px;">
+            I prezzi comprendono acqua della sorgente, caffè e digestivo. Vini e altre bevande sono esclusi.
         </p>
-        <p style="font-size:0.9rem;">
-            Contatti e recapiti vengono forniti tramite i canali ufficiali (locandine, comunicazioni scuola–famiglie,
-            mail dell’associazione).
-        </p>
+
+        <h4 style="margin-top:18px; color:#7a5a10;">Merende (dalle ore 16:00)</h4>
+        <div class="cards-prezzi">
+            <div class="card-prezzo">
+                <div class="tag-orario">Merenda semplice</div>
+                <ul class="prezzi-elenco">
+                    <li>salame, lardo, tomini, acciughe</li>
+                    <li>formaggi</li>
+                    <li>acqua di sorgente</li>
+                    <li>dolce, caffè e digestivo</li>
+                </ul>
+                <p style="margin-top:6px;">
+                    <strong>Adulti:</strong> € 18,00<br>
+                    <strong>Bambini (4–10 anni):</strong> € 12,00
+                </p>
+            </div>
+
+            <div class="card-prezzo">
+                <div class="tag-orario">Merenda “sinoira”</div>
+                <ul class="prezzi-elenco">
+                    <li>salame, lardo, tomini, acciughe</li>
+                    <li>polenta e contorno</li>
+                    <li>formaggi</li>
+                    <li>acqua di sorgente</li>
+                    <li>dolce, caffè e digestivo</li>
+                </ul>
+                <p style="margin-top:6px;">
+                    <strong>Adulti:</strong> € 25,00<br>
+                    <strong>Bambini (4–10 anni):</strong> € 12,00
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALLOGGI E BAITA -->
+    <section id="alloggi">
+        <div class="pill">Riposo</div>
+        <h3>Alloggi al rifugio e Baita Allen</h3>
+
+        <div class="grid-2">
+            <div>
+                <h4>Camere del rifugio</h4>
+                <p>
+                    Le <strong>8 camere</strong> del Rifugio Salvin, completamente ristrutturate e annesse
+                    all’edificio principale, offrono comfort e funzionalità grazie alla dotazione di
+                    <strong>biancheria e bagno privato</strong>.
+                </p>
+                <p>
+                    Le camere matrimoniali, con l’aggiunta di un letto a castello, sono perfette per ospitare
+                    famiglie o piccoli gruppi fino a <strong>4 persone</strong>.
+                </p>
+                <div class="box">
+                    <h4>Pensione completa – Camere</h4>
+                    <ul class="prezzi-elenco">
+                        <li><strong>Adulti:</strong> € 85,00</li>
+                        <li><strong>Bambini (4–10 anni):</strong> € 40,00</li>
+                        <li><strong>Bambini (0–4 anni):</strong> gratis</li>
+                    </ul>
+                    <p style="font-size:0.9rem; margin-top:6px;">
+                        La prenotazione è obbligatoria e viene confermata via email al ricevimento della caparra.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <h4>Baita Allen</h4>
+                <p>
+                    La <strong>Baita Allen</strong> è una piccola casa in pietra situata a circa 50 metri dal rifugio,
+                    nel cuore delle Valli di Lanzo. Dispone di <strong>camera matrimoniale</strong>, bagno con piccola
+                    vasca, cucina e soggiorno con caminetto. Nel soggiorno possono essere aggiunti due letti singoli,
+                    per una capienza massima di <strong>4 persone</strong>.
+                </p>
+                <div class="box">
+                    <h4>Affitto Baita Allen</h4>
+                    <ul class="prezzi-elenco">
+                        <li>€ 50,00 (2 persone)</li>
+                        <li>€ 60,00 (3 persone)</li>
+                        <li>€ 70,00 (4 persone)</li>
+                        <li><em>a notte · 2 settimane:</em> € 600</li>
+                        <li><em>1 mese:</em> € 1.000</li>
+                    </ul>
+                    <p style="font-size:0.9rem; margin-top:6px;">
+                        Anche per la Baita la prenotazione è obbligatoria e viene confermata al ricevimento della caparra.
+                    </p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- NOTE LEGALI -->
@@ -529,7 +1029,7 @@
     // anno automatico nel footer
     document.getElementById('anno').textContent = new Date().getFullYear();
 
-    // animazione sezione in ingresso
+    // animazione sezioni in ingresso
     const sezioni = document.querySelectorAll('main section');
     const observer = new IntersectionObserver(
         (entries) => {
@@ -542,6 +1042,34 @@
         { threshold: 0.15 }
     );
     sezioni.forEach(sec => observer.observe(sec));
+
+    // tabs paesaggi
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-target');
+
+            tabButtons.forEach(b => b.classList.remove('attiva'));
+            btn.classList.add('attiva');
+
+            tabContents.forEach(tc => {
+                tc.classList.remove('attivo');
+                if (tc.id === targetId) {
+                    tc.classList.add('attivo');
+                }
+            });
+        });
+    });
+
+    // alberi interattivi
+    const alberi = document.querySelectorAll('.albero');
+    alberi.forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('aperto');
+        });
+    });
 </script>
 
 </body>
